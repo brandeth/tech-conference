@@ -1,10 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @theme {
+  --font-sans: "Chakra Petch", sans-serif;
+  --font-chakra-petch: "Chakra Petch", sans-serif;
   --color-brand-neutral-900: #00151D;
   --color-brand-neutral-800: #001A24;
   --color-brand-neutral-600: #33444A;
   --color-brand-neutral-500: #49616A;
   --color-brand-neutral-200: #C2C5C2;
   --color-brand-neutral-100: #FCEFE8;
+  --color-brand-green-200: #D1FF66;
+  --color-brand-yellow-100: #FFE6BA;
+  --color-brand-red-100: #FEC9C3;
+  --color-brand-red-300: #FF8080;
+  --color-brand-cyan-100: #B5E9FC;
+  --color-brand-purple-100: #CCC4FD;
+  --color-brand-blue-100: #BBD8FF;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  .text-preset-1 {
+    font-family: var(--font-chakra-petch);
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: -2px;
+  }
+
+  .text-preset-2 {
+    font-family: var(--font-chakra-petch);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 110%;
+    letter-spacing: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  @layer utilities {
+    .text-preset-1 {
+      font-size: 80px;
+    }
+
+    .text-preset-2 {
+      font-size: 28px;
+      line-height: 110%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  @layer utilities {
+    .text-preset-2 {
+      font-size: 32px;
+      line-height: 120%;
+    }
+  }
 }
