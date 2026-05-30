@@ -2,7 +2,7 @@
   <main class="home-page">
     <nav class="site-nav" aria-label="Primary navigation">
       <NuxtLink to="/" class="brand-mark" aria-label="Dev Horizon home">
-        <img src="~/assets/css/images/logo.svg" alt="" class="brand-logo">
+        <img src="~/assets/images/logo.svg" alt="" class="brand-logo">
       </NuxtLink>
 
       <div class="nav-links" aria-label="Conference sections">
