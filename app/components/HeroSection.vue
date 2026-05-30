@@ -103,6 +103,12 @@ withDefaults(defineProps<{
   }
 }
 
+@media (max-width: 1180px) and (min-width: 768px) {
+  .hero-intro-panel {
+    height: 360px;
+  }
+}
+
 @media (max-width: 640px) {
   .hero-section {
     gap: 20px;

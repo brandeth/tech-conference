@@ -130,6 +130,12 @@ import elenaAvatar from '~/assets/images/avatar-elena-vasquez.webp'
   }
 }
 
+@media (max-width: 1180px) and (min-width: 768px) {
+  .hero-keynote-panel {
+    height: 400px;
+  }
+}
+
 @media (max-width: 760px) {
   .hero-keynote-panel {
     height: 560px;

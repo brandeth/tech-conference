@@ -11,6 +11,8 @@
           :key="item.label"
           :to="item.to"
           class="site-nav__button"
+          :class="{ 'site-nav__button--active': isNavItemActive(item) }"
+          :aria-current="getAriaCurrent(item)"
         >
           {{ item.label }}
         </NuxtLink>
@@ -41,6 +43,8 @@
         :key="item.label"
         :to="item.to"
         class="site-nav__button site-nav__button--mobile"
+        :class="{ 'site-nav__button--active': isNavItemActive(item) }"
+        :aria-current="getAriaCurrent(item)"
         @click="closeMenu"
       >
         {{ item.label }}
@@ -50,12 +54,13 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute()
 const isMenuOpen = ref(false)
 
 const navItems = [
-  { label: 'Home', to: '/' },
-  { label: 'Schedule', to: '/#schedule' },
-  { label: 'Speakers', to: '/#speakers' },
+  { label: 'Home', to: '/', path: '/', hash: '' },
+  { label: 'Schedule', to: '/#schedule', path: '/', hash: '#schedule' },
+  { label: 'Speakers', to: '/#speakers', path: '/', hash: '#speakers' },
 ] as const
 
 const mobilePanelStyle = computed(() => ({
@@ -65,6 +70,18 @@ const mobilePanelStyle = computed(() => ({
 
 function closeMenu() {
   isMenuOpen.value = false
+}
+
+function isNavItemActive(item: (typeof navItems)[number]) {
+  return route.path === item.path && route.hash === item.hash
+}
+
+function getAriaCurrent(item: (typeof navItems)[number]) {
+  if (!isNavItemActive(item)) {
+    return undefined
+  }
+
+  return item.hash ? 'location' : 'page'
 }
 </script>
 
@@ -134,6 +151,16 @@ function closeMenu() {
   box-shadow: 2px 2px 0 var(--color-brand-neutral-100);
 }
 
+.site-nav__button--active {
+  border-color: var(--color-brand-green-200);
+  box-shadow: 2px 2px 0 var(--color-brand-green-200);
+  color: var(--color-brand-green-200);
+}
+
+.site-nav__button--active:hover {
+  box-shadow: 2px 2px 0 var(--color-brand-green-200);
+}
+
 .site-nav__button:focus-visible {
   border-color: transparent;
   background:
@@ -165,6 +192,10 @@ function closeMenu() {
   box-shadow: 2px 2px 0 var(--color-brand-green-200);
   color: var(--color-brand-neutral-100);
   outline: none;
+}
+
+.site-nav__button--active:focus-visible {
+  color: var(--color-brand-green-200);
 }
 
 .site-nav__button:active {
