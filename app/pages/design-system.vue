@@ -45,6 +45,39 @@
 
       <section class="grid gap-5">
         <div class="grid gap-2">
+          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Navigation</p>
+          <h2 class="text-preset-2">Menu button</h2>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-12 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-6">
+          <Button variant="menu" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
+            </svg>
+          </Button>
+
+          <Button variant="menu" aria-label="Close menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
+            </svg>
+          </Button>
+
+          <Button variant="menu" class="menu-hover-demo" aria-label="Open menu hover state">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
+            </svg>
+          </Button>
+
+          <Button variant="menu" class="menu-focus-demo" aria-label="Close menu focus state">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
+            </svg>
+          </Button>
+        </div>
+      </section>
+
+      <section class="grid gap-5">
+        <div class="grid gap-2">
           <p class="text-preset-5 text-[var(--color-brand-green-200)]">Control</p>
           <h2 class="text-preset-2">Tab button</h2>
         </div>
@@ -182,6 +215,12 @@ const usageExample = `<Button>Get tickets</Button>
   View talk ->
 </Button>
 
+<Button variant="menu" aria-label="Open menu">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
+  </svg>
+</Button>
+
 <Button variant="control-tab" selected>
   Agenda
 </Button>
@@ -213,6 +252,45 @@ const usageExample = `<Button>Get tickets</Button>
   border-color: var(--color-brand-green-200);
   color: var(--color-brand-green-200);
   box-shadow: 2px 2px 0 var(--color-brand-green-200);
+}
+
+.menu-hover-demo {
+  background: var(--color-brand-neutral-900) !important;
+  border-color: var(--color-brand-neutral-100) !important;
+  color: var(--color-brand-neutral-100) !important;
+  box-shadow: 2px 2px 0 var(--color-brand-neutral-100) !important;
+}
+
+.menu-focus-demo {
+  border-color: transparent !important;
+  background:
+    repeating-linear-gradient(
+        to right,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top left / 100% 1px no-repeat,
+    repeating-linear-gradient(
+        to right,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      bottom left / 100% 1px no-repeat,
+    repeating-linear-gradient(
+        to bottom,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top left / 1px 100% no-repeat,
+    repeating-linear-gradient(
+        to bottom,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top right / 1px 100% no-repeat,
+    var(--color-brand-neutral-900) !important;
+  color: var(--color-brand-neutral-100) !important;
+  box-shadow: 2px 2px 0 var(--color-brand-green-200) !important;
 }
 
 .control-tab-focus-demo {

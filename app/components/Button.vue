@@ -25,7 +25,7 @@
 withDefaults(
   defineProps<{
     type?: 'button' | 'submit' | 'reset'
-    variant?: 'primary' | 'primary-light' | 'control-tab' | 'control-filter' | 'control-toggle' | 'control-clear'
+    variant?: 'primary' | 'primary-light' | 'menu' | 'control-tab' | 'control-filter' | 'control-toggle' | 'control-clear'
     selected?: boolean
     active?: boolean
   }>(),
@@ -96,6 +96,38 @@ withDefaults(
   --button-focus-color: var(--color-brand-neutral-100);
   --button-focus-ring-color: var(--color-brand-green-200);
   --button-active-shadow-color: var(--color-brand-neutral-600);
+}
+
+.button--menu {
+  --button-height: 40px;
+  --button-width: 40px;
+  --button-padding: 0;
+  --button-background: var(--color-brand-neutral-900);
+  --button-border-color: var(--color-brand-neutral-100);
+  --button-color: var(--color-brand-neutral-100);
+  --button-shadow-color: transparent;
+  --button-shadow: none;
+  --button-hover-background: var(--color-brand-neutral-900);
+  --button-hover-border-color: var(--color-brand-neutral-100);
+  --button-hover-color: var(--color-brand-neutral-100);
+  --button-hover-shadow: 2px 2px 0 var(--color-brand-neutral-100);
+  --button-hover-shadow-color: var(--color-brand-neutral-100);
+  --button-focus-background: var(--color-brand-neutral-900);
+  --button-focus-color: var(--color-brand-neutral-100);
+  --button-focus-ring-color: var(--color-brand-green-200);
+  --button-active-shadow-color: transparent;
+  width: var(--button-width);
+  min-width: var(--button-width);
+}
+
+.button--menu :deep(svg) {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+}
+
+.button--menu:active {
+  box-shadow: none;
 }
 
 .button--primary,
