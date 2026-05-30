@@ -71,6 +71,20 @@
         </div>
       </section>
 
+      <section class="grid gap-5">
+        <div class="grid gap-2">
+          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Control</p>
+          <h2 class="text-preset-2">Toggle button</h2>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-8 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5">
+          <Button variant="control-toggle">Toggle</Button>
+          <Button variant="control-toggle" selected>Toggle</Button>
+          <Button variant="control-toggle" class="control-toggle-hover-demo">Toggle</Button>
+          <Button variant="control-toggle" class="control-toggle-focus-demo">Toggle</Button>
+        </div>
+      </section>
+
       <section class="grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div class="grid gap-4 border border-[var(--color-brand-neutral-600)] p-5">
           <div class="grid gap-2">
@@ -161,6 +175,10 @@ const usageExample = `<Button>Get tickets</Button>
 
 <Button variant="control-filter" selected>
   Filter
+</Button>
+
+<Button variant="control-toggle" selected>
+  Livestream
 </Button>
 
 <Button type="submit">
@@ -276,5 +294,27 @@ const usageExample = `<Button>Get tickets</Button>
     linear-gradient(#000 0 0);
   mask-composite: exclude;
   pointer-events: none;
+}
+
+.control-toggle-hover-demo {
+  background: transparent !important;
+  border-color: transparent !important;
+  border-style: solid !important;
+  color: var(--color-brand-green-200) !important;
+  box-shadow: 2px 2px 0 var(--color-brand-green-200) !important;
+}
+
+.control-toggle-focus-demo {
+  border-color: var(--color-brand-green-200) !important;
+  border-style: solid !important;
+  background: transparent !important;
+  color: var(--color-brand-green-200) !important;
+  box-shadow: 2px 2px 0 var(--color-brand-green-200) !important;
+}
+
+.control-toggle-focus-demo::after {
+  background: none !important;
+  border: 0 !important;
+  mask: none !important;
 }
 </style>

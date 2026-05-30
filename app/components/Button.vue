@@ -15,7 +15,7 @@
 withDefaults(
   defineProps<{
     type?: 'button' | 'submit' | 'reset'
-    variant?: 'primary' | 'primary-light' | 'control-tab' | 'control-filter'
+    variant?: 'primary' | 'primary-light' | 'control-tab' | 'control-filter' | 'control-toggle'
     selected?: boolean
     active?: boolean
   }>(),
@@ -34,7 +34,7 @@ withDefaults(
   align-items: center;
   justify-content: center;
   padding: var(--button-padding, 16px 24px);
-  border: 1px solid var(--button-border-color);
+  border: 1px var(--button-border-style, solid) var(--button-border-color);
   border-radius: var(--button-border-radius, 0);
   background: var(--button-background);
   color: var(--button-color);
@@ -134,6 +134,94 @@ withDefaults(
   line-height: 140%;
   letter-spacing: 0;
   text-transform: uppercase;
+}
+
+.button--control-toggle {
+  --button-height: 36px;
+  --button-padding: 8px 16px;
+  --button-border-radius: 999px;
+  --button-background: transparent;
+  --button-border-color: transparent;
+  --button-border-style: solid;
+  --button-color: var(--color-brand-green-200);
+  --button-shadow-color: transparent;
+  --button-shadow: none;
+  --button-hover-background: transparent;
+  --button-hover-border-color: transparent;
+  --button-hover-color: var(--color-brand-green-200);
+  --button-hover-shadow: 2px 2px 0 var(--color-brand-green-200);
+  --button-focus-background: transparent;
+  --button-focus-border-color: var(--color-brand-green-200);
+  --button-focus-border-style: solid;
+  --button-focus-color: var(--color-brand-green-200);
+  --button-focus-ring-color: var(--color-brand-green-200);
+  --button-active-shadow-color: var(--color-brand-green-200);
+  --button-selected-background: var(--color-brand-green-200);
+  --button-selected-border-color: var(--color-brand-green-200);
+  --button-selected-color: var(--color-brand-neutral-900);
+  font-family: var(--font-jetbrains-mono);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.button--control-toggle::after {
+  inset: -1px;
+  padding: 1px;
+  background:
+    repeating-linear-gradient(
+        to right,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top center / calc(100% - 36px) 1px no-repeat,
+    repeating-linear-gradient(
+        to right,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      bottom center / calc(100% - 36px) 1px no-repeat,
+    repeating-linear-gradient(
+        45deg,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top left / 18px 18px no-repeat,
+    repeating-linear-gradient(
+        135deg,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top right / 18px 18px no-repeat,
+    repeating-linear-gradient(
+        135deg,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      bottom left / 18px 18px no-repeat,
+    repeating-linear-gradient(
+        45deg,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      bottom right / 18px 18px no-repeat;
+  border: 0;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.button--control-toggle:focus-visible::after,
+.button--control-toggle.button--selected::after {
+  background: none;
+  border: 0;
+}
+
+.button--control-toggle.button--selected {
+  border-style: solid;
 }
 
 .button--primary-light {
