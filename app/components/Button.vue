@@ -2,7 +2,10 @@
   <button
     :type="type"
     class="button"
-    :class="`button--${variant}`"
+    :class="[
+      `button--${variant}`,
+      { 'button--selected': selected || active },
+    ]"
   >
     <slot />
   </button>
@@ -12,7 +15,9 @@
 withDefaults(
   defineProps<{
     type?: 'button' | 'submit' | 'reset'
-    variant?: 'primary' | 'primary-light'
+    variant?: 'primary' | 'primary-light' | 'control-tab'
+    selected?: boolean
+    active?: boolean
   }>(),
   {
     type: 'button',
@@ -25,14 +30,14 @@ withDefaults(
 .button {
   position: relative;
   display: inline-flex;
-  height: 54px;
+  height: var(--button-height, 54px);
   align-items: center;
   justify-content: center;
-  padding: 16px 24px;
+  padding: var(--button-padding, 16px 24px);
   border: 1px solid var(--button-border-color);
   background: var(--button-background);
   color: var(--button-color);
-  box-shadow: 2px 2px 0 var(--button-shadow-color);
+  box-shadow: var(--button-shadow, 2px 2px 0 var(--button-shadow-color));
   cursor: pointer;
   transition:
     background-color 150ms ease-out,
@@ -54,6 +59,7 @@ withDefaults(
   --button-color: var(--color-brand-neutral-100);
   --button-shadow-color: var(--color-brand-neutral-100);
   --button-hover-background: var(--color-brand-green-200);
+  --button-hover-border-color: var(--color-brand-green-200);
   --button-hover-color: var(--color-brand-neutral-900);
   --button-hover-shadow-color: var(--color-brand-neutral-600);
   --button-focus-background: var(--color-brand-neutral-900);
@@ -67,6 +73,31 @@ withDefaults(
   font-family: var(--font-jetbrains-mono);
   font-size: 16px;
   font-weight: 700;
+  line-height: 140%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.button--control-tab {
+  --button-height: 36px;
+  --button-padding: 8px 16px;
+  --button-background: transparent;
+  --button-border-color: var(--color-brand-neutral-100);
+  --button-color: var(--color-brand-neutral-100);
+  --button-shadow-color: transparent;
+  --button-shadow: none;
+  --button-hover-background: var(--color-brand-neutral-900);
+  --button-hover-border-color: var(--color-brand-green-200);
+  --button-hover-color: var(--color-brand-green-200);
+  --button-hover-shadow-color: var(--color-brand-green-200);
+  --button-focus-background: var(--color-brand-neutral-900);
+  --button-focus-color: var(--color-brand-green-200);
+  --button-focus-ring-color: var(--color-brand-green-200);
+  --button-active-shadow-color: var(--color-brand-green-200);
+  --button-selected-border-color: var(--color-brand-green-200);
+  font-family: var(--font-jetbrains-mono);
+  font-size: 14px;
+  font-weight: 500;
   line-height: 140%;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -91,10 +122,14 @@ withDefaults(
   background: var(--button-hover-background);
   border-color: var(--button-hover-border-color, var(--button-border-color));
   color: var(--button-hover-color);
-  box-shadow: 4px 4px 0 var(--button-hover-shadow-color);
+  box-shadow: var(--button-hover-shadow, 4px 4px 0 var(--button-hover-shadow-color));
 }
 
 .button--primary-light:hover {
+  box-shadow: 2px 2px 0 var(--button-hover-shadow-color);
+}
+
+.button--control-tab:hover {
   box-shadow: 2px 2px 0 var(--button-hover-shadow-color);
 }
 
@@ -144,6 +179,13 @@ withDefaults(
 
 .button--primary-light:focus-visible::after {
   inset: -1px;
+}
+
+.button--selected {
+  border-color: var(--button-selected-border-color, var(--button-border-color));
+  background: var(--button-selected-background, var(--color-brand-green-200));
+  color: var(--button-selected-color, var(--color-brand-neutral-900));
+  box-shadow: var(--button-selected-shadow, none);
 }
 
 .button:active {

@@ -43,6 +43,20 @@
         </div>
       </section>
 
+      <section class="grid gap-5">
+        <div class="grid gap-2">
+          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Control</p>
+          <h2 class="text-preset-2">Tab button</h2>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-8 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5">
+          <Button variant="control-tab">Tab</Button>
+          <Button variant="control-tab" selected>Tab</Button>
+          <Button variant="control-tab" class="control-tab-hover-demo">Tab</Button>
+          <Button variant="control-tab" class="control-tab-focus-demo">Tab</Button>
+        </div>
+      </section>
+
       <section class="grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div class="grid gap-4 border border-[var(--color-brand-neutral-600)] p-5">
           <div class="grid gap-2">
@@ -127,6 +141,10 @@ const usageExample = `<Button>Get tickets</Button>
   View talk ->
 </Button>
 
+<Button variant="control-tab" selected>
+  Agenda
+</Button>
+
 <Button type="submit">
   Register now
 </Button>
@@ -135,3 +153,44 @@ const usageExample = `<Button>Get tickets</Button>
   Sold out
 </Button>`
 </script>
+
+<style scoped>
+.control-tab-hover-demo {
+  background: var(--color-brand-neutral-900);
+  border-color: var(--color-brand-green-200);
+  color: var(--color-brand-green-200);
+  box-shadow: 2px 2px 0 var(--color-brand-green-200);
+}
+
+.control-tab-focus-demo {
+  border-color: transparent;
+  background:
+    repeating-linear-gradient(
+        to right,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top left / 100% 1px no-repeat,
+    repeating-linear-gradient(
+        to right,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      bottom left / 100% 1px no-repeat,
+    repeating-linear-gradient(
+        to bottom,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top left / 1px 100% no-repeat,
+    repeating-linear-gradient(
+        to bottom,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top right / 1px 100% no-repeat,
+    var(--color-brand-neutral-900);
+  color: var(--color-brand-green-200);
+  box-shadow: 2px 2px 0 var(--color-brand-green-200);
+}
+</style>
