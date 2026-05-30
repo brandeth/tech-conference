@@ -25,7 +25,7 @@
 withDefaults(
   defineProps<{
     type?: 'button' | 'submit' | 'reset'
-    variant?: 'primary' | 'primary-light' | 'menu' | 'control-tab' | 'control-filter' | 'control-toggle' | 'control-clear'
+    variant?: 'primary' | 'primary-light' | 'menu' | 'nav' | 'control-tab' | 'control-filter' | 'control-toggle' | 'control-clear'
     selected?: boolean
     active?: boolean
   }>(),
@@ -118,6 +118,32 @@ withDefaults(
   --button-active-shadow-color: transparent;
   width: var(--button-width);
   min-width: var(--button-width);
+}
+
+.button--nav {
+  --button-height: 60px;
+  --button-padding: 16px 32px;
+  --button-background: var(--color-brand-neutral-900);
+  --button-border-color: var(--color-brand-neutral-100);
+  --button-color: var(--color-brand-neutral-100);
+  --button-shadow-color: transparent;
+  --button-shadow: none;
+  --button-hover-background: var(--color-brand-neutral-900);
+  --button-hover-border-color: var(--color-brand-neutral-100);
+  --button-hover-color: var(--color-brand-neutral-100);
+  --button-hover-shadow: 2px 2px 0 var(--color-brand-neutral-100);
+  --button-hover-shadow-color: var(--color-brand-neutral-100);
+  --button-focus-background: var(--color-brand-neutral-900);
+  --button-focus-color: var(--color-brand-neutral-100);
+  --button-focus-ring-color: var(--color-brand-green-200);
+  --button-active-shadow-color: transparent;
+  min-width: 122px;
+  font-family: var(--font-jetbrains-mono);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .button--menu :deep(svg) {

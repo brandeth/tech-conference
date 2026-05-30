@@ -1,6 +1,6 @@
 <template>
   <main class="min-h-screen bg-[var(--color-brand-neutral-900)] text-[var(--color-brand-neutral-100)]">
-    <section class="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 py-10 sm:px-8 lg:px-10 lg:py-14">
+    <section class="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-5 py-10 sm:px-8 lg:px-10 lg:py-14">
       <header class="grid gap-5 border-b border-[var(--color-brand-neutral-600)] pb-8 lg:grid-cols-[1fr_280px] lg:items-end">
         <div class="grid gap-4">
           <p class="text-preset-5 text-[var(--color-brand-green-200)]">Design system</p>
@@ -15,6 +15,17 @@
           <code class="text-preset-6-medium break-all text-[var(--color-brand-green-200)]">/design-system</code>
         </div>
       </header>
+
+      <section class="grid gap-5">
+        <div class="grid gap-2">
+          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Layout</p>
+          <h2 class="text-preset-2">Split hero</h2>
+        </div>
+
+        <div class="overflow-hidden border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-900)]">
+          <HeroSplitSection compact />
+        </div>
+      </section>
 
       <section class="grid gap-5">
         <div class="flex flex-wrap items-end justify-between gap-4">
@@ -43,93 +54,95 @@
         </div>
       </section>
 
-      <section class="grid gap-5">
-        <div class="grid gap-2">
-          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Navigation</p>
-          <h2 class="text-preset-2">Menu button</h2>
-        </div>
+      <div class="grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <section class="grid content-start gap-5 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5">
+          <div class="grid gap-2">
+            <p class="text-preset-5 text-[var(--color-brand-green-200)]">Navigation</p>
+            <h2 class="text-preset-2">Menu button</h2>
+          </div>
 
-        <div class="flex flex-wrap items-center gap-12 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-6">
-          <Button variant="menu" aria-label="Open menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
-            </svg>
-          </Button>
+          <div class="flex min-h-24 flex-wrap items-center gap-8">
+            <Button variant="menu" aria-label="Open menu">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
+              </svg>
+            </Button>
 
-          <Button variant="menu" aria-label="Close menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
-            </svg>
-          </Button>
+            <Button variant="menu" aria-label="Close menu">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
+              </svg>
+            </Button>
 
-          <Button variant="menu" class="menu-hover-demo" aria-label="Open menu hover state">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
-            </svg>
-          </Button>
+            <Button variant="menu" class="menu-hover-demo" aria-label="Open menu hover state">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
+              </svg>
+            </Button>
 
-          <Button variant="menu" class="menu-focus-demo" aria-label="Close menu focus state">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
-            </svg>
-          </Button>
-        </div>
-      </section>
+            <Button variant="menu" class="menu-focus-demo" aria-label="Close menu focus state">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" />
+              </svg>
+            </Button>
+          </div>
+        </section>
 
-      <section class="grid gap-5">
-        <div class="grid gap-2">
-          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Control</p>
-          <h2 class="text-preset-2">Tab button</h2>
-        </div>
+        <section class="grid content-start gap-5 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5">
+          <div class="grid gap-2">
+            <p class="text-preset-5 text-[var(--color-brand-green-200)]">Control</p>
+            <h2 class="text-preset-2">Tab button</h2>
+          </div>
 
-        <div class="flex flex-wrap items-center gap-8 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5">
-          <Button variant="control-tab">Tab</Button>
-          <Button variant="control-tab" selected>Tab</Button>
-          <Button variant="control-tab" class="control-tab-hover-demo">Tab</Button>
-          <Button variant="control-tab" class="control-tab-focus-demo">Tab</Button>
-        </div>
-      </section>
+          <div class="flex min-h-24 flex-wrap items-center gap-6">
+            <Button variant="control-tab">Tab</Button>
+            <Button variant="control-tab" selected>Tab</Button>
+            <Button variant="control-tab" class="control-tab-hover-demo">Tab</Button>
+            <Button variant="control-tab" class="control-tab-focus-demo">Tab</Button>
+          </div>
+        </section>
 
-      <section class="grid gap-5">
-        <div class="grid gap-2">
-          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Control</p>
-          <h2 class="text-preset-2">Filter button</h2>
-        </div>
+        <section class="grid content-start gap-5 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5">
+          <div class="grid gap-2">
+            <p class="text-preset-5 text-[var(--color-brand-green-200)]">Control</p>
+            <h2 class="text-preset-2">Filter button</h2>
+          </div>
 
-        <div class="flex flex-wrap items-center gap-8 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5">
-          <Button variant="control-filter">Filter</Button>
-          <Button variant="control-filter" selected>Filter</Button>
-          <Button variant="control-filter" class="control-filter-hover-demo">Filter</Button>
-          <Button variant="control-filter" class="control-filter-focus-demo">Filter</Button>
-        </div>
-      </section>
+          <div class="flex min-h-24 flex-wrap items-center gap-6">
+            <Button variant="control-filter">Filter</Button>
+            <Button variant="control-filter" selected>Filter</Button>
+            <Button variant="control-filter" class="control-filter-hover-demo">Filter</Button>
+            <Button variant="control-filter" class="control-filter-focus-demo">Filter</Button>
+          </div>
+        </section>
 
-      <section class="grid gap-5">
-        <div class="grid gap-2">
-          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Control</p>
-          <h2 class="text-preset-2">Toggle button</h2>
-        </div>
+        <section class="grid content-start gap-5 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5">
+          <div class="grid gap-2">
+            <p class="text-preset-5 text-[var(--color-brand-green-200)]">Control</p>
+            <h2 class="text-preset-2">Toggle button</h2>
+          </div>
 
-        <div class="flex flex-wrap items-center gap-8 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5">
-          <Button variant="control-toggle">Toggle</Button>
-          <Button variant="control-toggle" selected>Toggle</Button>
-          <Button variant="control-toggle" class="control-toggle-hover-demo">Toggle</Button>
-          <Button variant="control-toggle" class="control-toggle-focus-demo">Toggle</Button>
-        </div>
-      </section>
+          <div class="flex min-h-24 flex-wrap items-center gap-6">
+            <Button variant="control-toggle">Toggle</Button>
+            <Button variant="control-toggle" selected>Toggle</Button>
+            <Button variant="control-toggle" class="control-toggle-hover-demo">Toggle</Button>
+            <Button variant="control-toggle" class="control-toggle-focus-demo">Toggle</Button>
+          </div>
+        </section>
 
-      <section class="grid gap-5">
-        <div class="grid gap-2">
-          <p class="text-preset-5 text-[var(--color-brand-red-300)]">Control</p>
-          <h2 class="text-preset-2">Clear button</h2>
-        </div>
+        <section class="grid content-start gap-5 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5">
+          <div class="grid gap-2">
+            <p class="text-preset-5 text-[var(--color-brand-red-300)]">Control</p>
+            <h2 class="text-preset-2">Clear button</h2>
+          </div>
 
-        <div class="flex flex-wrap items-center gap-12 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-6">
-          <Button variant="control-clear">Clear</Button>
-          <Button variant="control-clear" class="control-clear-hover-demo">Clear</Button>
-          <Button variant="control-clear" class="control-clear-focus-demo">Clear</Button>
-        </div>
-      </section>
+          <div class="flex min-h-24 flex-wrap items-center gap-8">
+            <Button variant="control-clear">Clear</Button>
+            <Button variant="control-clear" class="control-clear-hover-demo">Clear</Button>
+            <Button variant="control-clear" class="control-clear-focus-demo">Clear</Button>
+          </div>
+        </section>
+      </div>
 
       <section class="grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div class="grid gap-4 border border-[var(--color-brand-neutral-600)] p-5">
@@ -138,7 +151,7 @@
             <h2 class="text-preset-2">Vue component</h2>
           </div>
 
-          <pre class="overflow-x-auto bg-[var(--color-brand-neutral-800)] p-4 text-[var(--color-brand-neutral-100)]"><code class="text-preset-6">{{ usageExample }}</code></pre>
+          <SyntaxCodeBlock :code="usageExample" language="vue" />
         </div>
 
         <aside class="grid gap-4 border border-[var(--color-brand-neutral-600)] p-5">
