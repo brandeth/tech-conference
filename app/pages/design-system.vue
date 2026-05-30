@@ -1,0 +1,137 @@
+<template>
+  <main class="min-h-screen bg-[var(--color-brand-neutral-900)] text-[var(--color-brand-neutral-100)]">
+    <section class="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 py-10 sm:px-8 lg:px-10 lg:py-14">
+      <header class="grid gap-5 border-b border-[var(--color-brand-neutral-600)] pb-8 lg:grid-cols-[1fr_280px] lg:items-end">
+        <div class="grid gap-4">
+          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Design system</p>
+          <h1 class="text-preset-1 max-w-3xl">Button</h1>
+          <p class="text-preset-3 max-w-3xl text-[var(--color-brand-neutral-200)]">
+            Component examples, interactive states, and implementation usage against the conference design tokens.
+          </p>
+        </div>
+
+        <div class="grid gap-2 border border-[var(--color-brand-neutral-600)] p-4">
+          <span class="text-preset-7 text-[var(--color-brand-neutral-200)]">Route</span>
+          <code class="text-preset-6-medium break-all text-[var(--color-brand-green-200)]">/design-system</code>
+        </div>
+      </header>
+
+      <section class="grid gap-5">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div class="grid gap-2">
+            <p class="text-preset-5 text-[var(--color-brand-green-200)]">Demo</p>
+            <h2 class="text-preset-2">Primary button</h2>
+          </div>
+          <Button variant="primary-light">View talk -></Button>
+        </div>
+
+        <div class="grid gap-4 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5 sm:grid-cols-2 lg:grid-cols-4">
+          <article
+            v-for="example in buttonExamples"
+            :key="example.label"
+            class="grid min-h-36 content-between gap-5 border border-[var(--color-brand-neutral-600)] p-4"
+          >
+            <div class="grid gap-1">
+              <h3 class="text-preset-6-extrabold text-[var(--color-brand-neutral-100)]">{{ example.label }}</h3>
+              <p class="text-preset-7 text-[var(--color-brand-neutral-200)]">{{ example.description }}</p>
+            </div>
+
+            <Button :variant="example.variant" :disabled="example.disabled" :autofocus="example.autofocus">
+              {{ example.text }}
+            </Button>
+          </article>
+        </div>
+      </section>
+
+      <section class="grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
+        <div class="grid gap-4 border border-[var(--color-brand-neutral-600)] p-5">
+          <div class="grid gap-2">
+            <p class="text-preset-5 text-[var(--color-brand-green-200)]">Usage</p>
+            <h2 class="text-preset-2">Vue component</h2>
+          </div>
+
+          <pre class="overflow-x-auto bg-[var(--color-brand-neutral-800)] p-4 text-[var(--color-brand-neutral-100)]"><code class="text-preset-6">{{ usageExample }}</code></pre>
+        </div>
+
+        <aside class="grid gap-4 border border-[var(--color-brand-neutral-600)] p-5">
+          <div class="grid gap-2">
+            <p class="text-preset-5 text-[var(--color-brand-green-200)]">Tokens</p>
+            <h2 class="text-preset-2">Button recipe</h2>
+          </div>
+
+          <dl class="grid gap-3">
+            <div
+              v-for="token in buttonTokens"
+              :key="token.name"
+              class="grid grid-cols-[28px_1fr] items-center gap-3"
+            >
+              <span class="h-7 w-7 border border-[var(--color-brand-neutral-600)]" :style="{ background: token.value }" />
+              <div class="grid gap-0.5">
+                <dt class="text-preset-6-medium">{{ token.name }}</dt>
+                <dd class="text-preset-7 text-[var(--color-brand-neutral-200)]">{{ token.value }}</dd>
+              </div>
+            </div>
+          </dl>
+        </aside>
+      </section>
+    </section>
+  </main>
+</template>
+
+<script setup lang="ts">
+const buttonExamples = [
+  {
+    label: 'Default',
+    description: 'Primary call to action.',
+    text: 'Register now',
+    variant: 'primary',
+  },
+  {
+    label: 'Light',
+    description: 'Cyan primary call to action.',
+    text: 'View talk ->',
+    variant: 'primary-light',
+  },
+  {
+    label: 'Hover',
+    description: 'Move the pointer over the button.',
+    text: 'Hover me',
+    variant: 'primary',
+  },
+  {
+    label: 'Focus',
+    description: 'Keyboard focus uses the dashed token ring.',
+    text: 'Focus me',
+    variant: 'primary',
+    autofocus: true,
+  },
+  {
+    label: 'Disabled',
+    description: 'Unavailable actions keep the shape and type scale.',
+    text: 'Sold out',
+    variant: 'primary',
+    disabled: true,
+  },
+] as const
+
+const buttonTokens = [
+  { name: 'Primary background', value: 'var(--color-brand-neutral-900)' },
+  { name: 'Primary text', value: 'var(--color-brand-neutral-100)' },
+  { name: 'Light background', value: 'var(--color-brand-cyan-100)' },
+  { name: 'Light border', value: 'var(--color-brand-neutral-900)' },
+] as const
+
+const usageExample = `<Button>Get tickets</Button>
+
+<Button variant="primary-light">
+  View talk ->
+</Button>
+
+<Button type="submit">
+  Register now
+</Button>
+
+<Button disabled>
+  Sold out
+</Button>`
+</script>
