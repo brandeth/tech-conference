@@ -8,6 +8,16 @@
     ]"
   >
     <slot />
+    <svg
+      v-if="variant === 'control-clear'"
+      class="button__dash-ring"
+      viewBox="0 0 100 36"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <rect class="button__dash-ring-rect" x="0.5" y="0.5" width="99" height="35" rx="18" ry="18" />
+    </svg>
   </button>
 </template>
 
@@ -15,7 +25,7 @@
 withDefaults(
   defineProps<{
     type?: 'button' | 'submit' | 'reset'
-    variant?: 'primary' | 'primary-light' | 'control-tab' | 'control-filter' | 'control-toggle'
+    variant?: 'primary' | 'primary-light' | 'control-tab' | 'control-filter' | 'control-toggle' | 'control-clear'
     selected?: boolean
     active?: boolean
   }>(),
@@ -53,6 +63,24 @@ withDefaults(
   content: "";
   border-radius: inherit;
   pointer-events: none;
+}
+
+.button__dash-ring {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.button__dash-ring-rect {
+  fill: none;
+  stroke: var(--button-focus-ring-color);
+  stroke-width: 1px;
+  stroke-dasharray: 4 4;
+  vector-effect: non-scaling-stroke;
 }
 
 .button--primary {
@@ -128,6 +156,33 @@ withDefaults(
   --button-selected-background: var(--color-brand-green-200);
   --button-selected-border-color: var(--color-brand-green-200);
   --button-selected-color: var(--color-brand-neutral-900);
+  font-family: var(--font-jetbrains-mono);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.button--control-clear {
+  --button-height: 36px;
+  --button-padding: 8px 16px;
+  --button-border-radius: 999px;
+  --button-background: transparent;
+  --button-border-color: var(--color-brand-red-300);
+  --button-color: var(--color-brand-red-300);
+  --button-shadow-color: transparent;
+  --button-shadow: none;
+  --button-hover-background: var(--color-brand-neutral-900);
+  --button-hover-border-color: var(--color-brand-red-300);
+  --button-hover-color: var(--color-brand-red-300);
+  --button-hover-shadow: 2px 2px 0 var(--color-brand-red-300);
+  --button-focus-background: var(--color-brand-neutral-900);
+  --button-focus-border-color: transparent;
+  --button-focus-border-style: solid;
+  --button-focus-color: var(--color-brand-red-300);
+  --button-focus-ring-color: var(--color-brand-red-300);
+  --button-active-shadow-color: var(--color-brand-red-300);
   font-family: var(--font-jetbrains-mono);
   font-size: 14px;
   font-weight: 500;
@@ -294,6 +349,20 @@ withDefaults(
 .button--control-filter:focus-visible {
   border-color: transparent;
   border-style: solid;
+}
+
+.button--control-clear:focus-visible {
+  border-color: transparent;
+  border-style: solid;
+}
+
+.button--control-clear:focus-visible::after {
+  background: none;
+}
+
+.button--control-clear:focus-visible .button__dash-ring,
+.button--control-clear.control-clear-focus-demo .button__dash-ring {
+  display: block;
 }
 
 .button--control-filter:focus-visible::after {

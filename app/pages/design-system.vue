@@ -85,6 +85,19 @@
         </div>
       </section>
 
+      <section class="grid gap-5">
+        <div class="grid gap-2">
+          <p class="text-preset-5 text-[var(--color-brand-red-300)]">Control</p>
+          <h2 class="text-preset-2">Clear button</h2>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-12 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-6">
+          <Button variant="control-clear">Clear</Button>
+          <Button variant="control-clear" class="control-clear-hover-demo">Clear</Button>
+          <Button variant="control-clear" class="control-clear-focus-demo">Clear</Button>
+        </div>
+      </section>
+
       <section class="grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div class="grid gap-4 border border-[var(--color-brand-neutral-600)] p-5">
           <div class="grid gap-2">
@@ -179,6 +192,10 @@ const usageExample = `<Button>Get tickets</Button>
 
 <Button variant="control-toggle" selected>
   Livestream
+</Button>
+
+<Button variant="control-clear">
+  Clear
 </Button>
 
 <Button type="submit">
@@ -317,4 +334,25 @@ const usageExample = `<Button>Get tickets</Button>
   border: 0 !important;
   mask: none !important;
 }
+
+.control-clear-hover-demo {
+  background: var(--color-brand-neutral-900) !important;
+  border-color: var(--color-brand-red-300) !important;
+  color: var(--color-brand-red-300) !important;
+  box-shadow: 2px 2px 0 var(--color-brand-red-300) !important;
+}
+
+.control-clear-focus-demo {
+  position: relative;
+  border-color: transparent !important;
+  background: var(--color-brand-neutral-900) !important;
+  color: var(--color-brand-red-300) !important;
+  box-shadow: 2px 2px 0 var(--color-brand-red-300) !important;
+}
+
+.control-clear-focus-demo::after {
+  background: none !important;
+  mask: none !important;
+}
+
 </style>
