@@ -57,6 +57,20 @@
         </div>
       </section>
 
+      <section class="grid gap-5">
+        <div class="grid gap-2">
+          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Control</p>
+          <h2 class="text-preset-2">Filter button</h2>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-8 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-800)] p-5">
+          <Button variant="control-filter">Filter</Button>
+          <Button variant="control-filter" selected>Filter</Button>
+          <Button variant="control-filter" class="control-filter-hover-demo">Filter</Button>
+          <Button variant="control-filter" class="control-filter-focus-demo">Filter</Button>
+        </div>
+      </section>
+
       <section class="grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div class="grid gap-4 border border-[var(--color-brand-neutral-600)] p-5">
           <div class="grid gap-2">
@@ -145,6 +159,10 @@ const usageExample = `<Button>Get tickets</Button>
   Agenda
 </Button>
 
+<Button variant="control-filter" selected>
+  Filter
+</Button>
+
 <Button type="submit">
   Register now
 </Button>
@@ -192,5 +210,71 @@ const usageExample = `<Button>Get tickets</Button>
     var(--color-brand-neutral-900);
   color: var(--color-brand-green-200);
   box-shadow: 2px 2px 0 var(--color-brand-green-200);
+}
+
+.control-filter-hover-demo {
+  background: var(--color-brand-neutral-900);
+  border-color: var(--color-brand-green-200);
+  color: var(--color-brand-green-200);
+  box-shadow: 2px 2px 0 var(--color-brand-green-200);
+}
+
+.control-filter-focus-demo {
+  position: relative;
+  border-color: transparent;
+  background: var(--color-brand-neutral-900);
+  color: var(--color-brand-green-200);
+  box-shadow: 2px 2px 0 var(--color-brand-green-200);
+}
+
+.control-filter-focus-demo::after {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background:
+    repeating-linear-gradient(
+        to right,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top center / calc(100% - 36px) 1px no-repeat,
+    repeating-linear-gradient(
+        to right,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      bottom center / calc(100% - 36px) 1px no-repeat,
+    repeating-linear-gradient(
+        45deg,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top left / 18px 18px no-repeat,
+    repeating-linear-gradient(
+        135deg,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top right / 18px 18px no-repeat,
+    repeating-linear-gradient(
+        135deg,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      bottom left / 18px 18px no-repeat,
+    repeating-linear-gradient(
+        45deg,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      bottom right / 18px 18px no-repeat;
+  border: 0;
+  content: "";
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
 }
 </style>

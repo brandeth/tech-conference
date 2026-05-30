@@ -15,7 +15,7 @@
 withDefaults(
   defineProps<{
     type?: 'button' | 'submit' | 'reset'
-    variant?: 'primary' | 'primary-light' | 'control-tab'
+    variant?: 'primary' | 'primary-light' | 'control-tab' | 'control-filter'
     selected?: boolean
     active?: boolean
   }>(),
@@ -35,6 +35,7 @@ withDefaults(
   justify-content: center;
   padding: var(--button-padding, 16px 24px);
   border: 1px solid var(--button-border-color);
+  border-radius: var(--button-border-radius, 0);
   background: var(--button-background);
   color: var(--button-color);
   box-shadow: var(--button-shadow, 2px 2px 0 var(--button-shadow-color));
@@ -50,6 +51,7 @@ withDefaults(
   position: absolute;
   inset: 0;
   content: "";
+  border-radius: inherit;
   pointer-events: none;
 }
 
@@ -103,6 +105,37 @@ withDefaults(
   text-transform: uppercase;
 }
 
+.button--control-filter {
+  --button-height: 36px;
+  --button-padding: 8px 16px;
+  --button-border-radius: 999px;
+  --button-background: transparent;
+  --button-border-color: var(--color-brand-neutral-600);
+  --button-color: var(--color-brand-neutral-100);
+  --button-shadow-color: transparent;
+  --button-shadow: none;
+  --button-hover-background: var(--color-brand-neutral-900);
+  --button-hover-border-color: var(--color-brand-green-200);
+  --button-hover-color: var(--color-brand-green-200);
+  --button-hover-shadow: 2px 2px 0 var(--color-brand-green-200);
+  --button-hover-shadow-color: var(--color-brand-green-200);
+  --button-focus-background: var(--color-brand-neutral-900);
+  --button-focus-border-color: var(--color-brand-green-200);
+  --button-focus-border-style: dashed;
+  --button-focus-color: var(--color-brand-green-200);
+  --button-focus-ring-color: var(--color-brand-green-200);
+  --button-active-shadow-color: var(--color-brand-green-200);
+  --button-selected-background: var(--color-brand-green-200);
+  --button-selected-border-color: var(--color-brand-green-200);
+  --button-selected-color: var(--color-brand-neutral-900);
+  font-family: var(--font-jetbrains-mono);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
 .button--primary-light {
   --button-background: var(--color-brand-cyan-100);
   --button-border-color: var(--color-brand-neutral-900);
@@ -134,7 +167,8 @@ withDefaults(
 }
 
 .button:focus-visible {
-  border-color: transparent;
+  border-color: var(--button-focus-border-color, transparent);
+  border-style: var(--button-focus-border-style, solid);
   background: var(--button-focus-background);
   color: var(--button-focus-color);
   box-shadow: 2px 2px 0 var(--button-focus-ring-color);
@@ -167,6 +201,58 @@ withDefaults(
         transparent 4px 8px
       )
       top right / 1px 100% no-repeat;
+}
+
+.button--control-filter:focus-visible {
+  border-color: transparent;
+  border-style: solid;
+}
+
+.button--control-filter:focus-visible::after {
+  inset: -1px;
+  padding: 1px;
+  background:
+    repeating-linear-gradient(
+        to right,
+        var(--button-focus-ring-color) 0 4px,
+        transparent 4px 8px
+      )
+      top center / calc(100% - 36px) 1px no-repeat,
+    repeating-linear-gradient(
+        to right,
+        var(--button-focus-ring-color) 0 4px,
+        transparent 4px 8px
+      )
+      bottom center / calc(100% - 36px) 1px no-repeat,
+    repeating-linear-gradient(
+        45deg,
+        var(--button-focus-ring-color) 0 4px,
+        transparent 4px 8px
+      )
+      top left / 18px 18px no-repeat,
+    repeating-linear-gradient(
+        135deg,
+        var(--button-focus-ring-color) 0 4px,
+        transparent 4px 8px
+      )
+      top right / 18px 18px no-repeat,
+    repeating-linear-gradient(
+        135deg,
+        var(--button-focus-ring-color) 0 4px,
+        transparent 4px 8px
+      )
+      bottom left / 18px 18px no-repeat,
+    repeating-linear-gradient(
+        45deg,
+        var(--button-focus-ring-color) 0 4px,
+        transparent 4px 8px
+      )
+      bottom right / 18px 18px no-repeat;
+  border: 0;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
 }
 
 .button--primary-light:focus-visible {
