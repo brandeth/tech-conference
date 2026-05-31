@@ -30,6 +30,28 @@
       <section class="grid gap-5">
         <div class="flex flex-wrap items-end justify-between gap-4">
           <div class="grid gap-2">
+            <p class="text-preset-5 text-[var(--color-brand-green-200)]">Profile</p>
+            <h2 class="text-preset-2">Speaker card</h2>
+          </div>
+        </div>
+
+        <div class="grid gap-4 border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-900)] p-5 sm:grid-cols-2 lg:grid-cols-4">
+          <SpeakerCard
+            v-for="speaker in speakerCardExamples"
+            :key="speaker.name"
+            :image-src="speaker.imageSrc"
+            :image-alt="speaker.imageAlt"
+            :image-background-color="speaker.imageBackgroundColor"
+            :name="speaker.name"
+            :title-and-company="speaker.titleAndCompany"
+            :talk-title="speaker.talkTitle"
+          />
+        </div>
+      </section>
+
+      <section class="grid gap-5">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div class="grid gap-2">
             <p class="text-preset-5 text-[var(--color-brand-green-200)]">Demo</p>
             <h2 class="text-preset-2">Primary button</h2>
           </div>
@@ -180,6 +202,46 @@
 </template>
 
 <script setup lang="ts">
+import elenaAvatar from '~/assets/images/avatar-elena-vasquez.webp'
+import jamesAvatar from '~/assets/images/avatar-james-okonkwo.webp'
+import naomiAvatar from '~/assets/images/avatar-naomi-tanaka.webp'
+import sarahAvatar from '~/assets/images/avatar-sarah-lindstrom.webp'
+
+const speakerCardExamples = [
+  {
+    imageSrc: elenaAvatar,
+    imageAlt: 'Elena Vasquez',
+    imageBackgroundColor: 'var(--color-brand-cyan-100)',
+    name: 'elena vasquez',
+    titleAndCompany: 'Principal Frontend Engineer\n@ByteCraft',
+    talkTitle: 'The next frontier of web development',
+  },
+  {
+    imageSrc: naomiAvatar,
+    imageAlt: 'Naomi Tanaka',
+    imageBackgroundColor: 'var(--color-brand-blue-100)',
+    name: 'naomi tanaka',
+    titleAndCompany: 'Accessibility Engineering Lead\n@Axion',
+    talkTitle: 'Screen readers deserve better components',
+  },
+  {
+    imageSrc: jamesAvatar,
+    imageAlt: 'James Okonkwo',
+    imageBackgroundColor: 'var(--color-brand-purple-100)',
+    name: 'james okonkwo',
+    titleAndCompany: 'Engineering Director @Cartwell',
+    talkTitle: 'Monorepos at scale: lessons from 500 packages',
+  },
+  {
+    imageSrc: sarahAvatar,
+    imageAlt: 'Sarah Lindström',
+    imageBackgroundColor: 'var(--color-brand-yellow-100)',
+    name: 'sarah lindström',
+    titleAndCompany: 'Design Systems Lead @Tessera',
+    talkTitle: 'Type-safe design tokens across platforms',
+  },
+] as const
+
 const buttonExamples = [
   {
     label: 'Default',
