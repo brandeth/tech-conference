@@ -69,7 +69,11 @@
               <p class="text-preset-7 text-[var(--color-brand-neutral-200)]">{{ example.description }}</p>
             </div>
 
-            <Button :variant="example.variant" :disabled="example.disabled" :autofocus="example.autofocus">
+            <Button
+              :variant="example.variant"
+              :disabled="example.disabled"
+              :class="{ 'primary-focus-demo': example.focusDemo }"
+            >
               {{ example.text }}
             </Button>
           </article>
@@ -266,7 +270,7 @@ const buttonExamples = [
     description: 'Keyboard focus uses the dashed token ring.',
     text: 'Focus me',
     variant: 'primary',
-    autofocus: true,
+    focusDemo: true,
   },
   {
     label: 'Disabled',
@@ -366,6 +370,42 @@ const usageExample = `<Button>Get tickets</Button>
     var(--color-brand-neutral-900) !important;
   color: var(--color-brand-neutral-100) !important;
   box-shadow: 2px 2px 0 var(--color-brand-green-200) !important;
+}
+
+.primary-focus-demo {
+  border-color: transparent !important;
+  border-style: solid !important;
+  background: var(--color-brand-neutral-900) !important;
+  color: var(--color-brand-neutral-100) !important;
+  box-shadow: 2px 2px 0 var(--color-brand-green-200) !important;
+}
+
+.primary-focus-demo::after {
+  background:
+    repeating-linear-gradient(
+        to right,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top left / 100% 1px no-repeat,
+    repeating-linear-gradient(
+        to right,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      bottom left / 100% 1px no-repeat,
+    repeating-linear-gradient(
+        to bottom,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top left / 1px 100% no-repeat,
+    repeating-linear-gradient(
+        to bottom,
+        var(--color-brand-green-200) 0 4px,
+        transparent 4px 8px
+      )
+      top right / 1px 100% no-repeat !important;
 }
 
 .control-tab-focus-demo {
