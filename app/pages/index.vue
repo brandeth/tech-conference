@@ -4,20 +4,7 @@
 
     <HeroSection />
 
-    <section id="schedule" class="content-section mx-auto w-[calc(100%_-_40px)] max-w-[1440px] max-[560px]:w-[calc(100%_-_32px)]" aria-labelledby="agenda-title">
-      <div class="section-heading">
-        <p class="text-preset-5">Agenda tracks</p>
-        <h2 id="agenda-title" class="text-preset-2">Designed for people shipping real systems</h2>
-      </div>
-
-      <div class="track-grid">
-        <article v-for="track in tracks" :key="track.title" class="track-card">
-          <p>{{ track.time }}</p>
-          <h3>{{ track.title }}</h3>
-          <span>{{ track.detail }}</span>
-        </article>
-      </div>
-    </section>
+    <TrackSection />
 
     <section id="speakers" class="content-section speaker-section mx-auto w-[calc(100%_-_40px)] max-w-[1440px] max-[560px]:w-[calc(100%_-_32px)]" aria-labelledby="speakers-title">
       <div class="section-heading">
@@ -39,24 +26,6 @@
 </template>
 
 <script setup lang="ts">
-const tracks = [
-  {
-    time: '09:30',
-    title: 'AI product systems',
-    detail: 'Reliable agent workflows, evaluation, and product control surfaces.',
-  },
-  {
-    time: '11:00',
-    title: 'Frontend futures',
-    detail: 'Interfaces that stay fast, resilient, and expressive at scale.',
-  },
-  {
-    time: '14:00',
-    title: 'Platform engineering',
-    detail: 'Developer experience, deployment safety, and practical observability.',
-  },
-] as const
-
 const speakers = [
   { initials: 'AK', name: 'Ari Kim', role: 'Principal Engineer, Runtime Labs' },
   { initials: 'MS', name: 'Maya Singh', role: 'Research Lead, Applied Interfaces' },
@@ -77,13 +46,11 @@ const speakers = [
   color: var(--color-brand-green-200);
 }
 
-.track-card,
 .speaker-card {
   border: 1px solid var(--color-brand-neutral-600);
   background: rgba(0, 26, 36, 0.92);
 }
 
-.track-card p,
 .speaker-card p {
   font-family: var(--font-jetbrains-mono);
   font-size: 12px;
@@ -105,33 +72,12 @@ const speakers = [
   gap: 10px;
 }
 
-.track-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.track-card {
-  display: grid;
-  min-height: 218px;
-  align-content: space-between;
-  gap: 26px;
-  padding: 22px;
-}
-
-.track-card h3,
 .speaker-card h3 {
   font-family: var(--font-chakra-petch);
   font-size: 24px;
   font-weight: 700;
   line-height: 110%;
   color: var(--color-brand-neutral-100);
-}
-
-.track-card span {
-  color: var(--color-brand-neutral-200);
-  font-size: 16px;
-  line-height: 150%;
 }
 
 .speaker-section {
@@ -175,7 +121,6 @@ const speakers = [
     justify-content: flex-start;
   }
 
-  .track-grid,
   .speaker-list {
     grid-template-columns: 1fr;
   }
