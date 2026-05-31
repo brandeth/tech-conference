@@ -7,6 +7,8 @@
     <TrackSection />
 
     <FeaturedSpeakers />
+
+    <ScheduleHighlights />
   </main>
 </template>
 

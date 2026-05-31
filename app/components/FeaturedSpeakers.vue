@@ -104,7 +104,7 @@ const featuredSpeakers = [
 .featured-speakers {
   display: grid;
   gap: 24px;
-  padding: 32px 0 96px;
+  padding: 32px 0 48px;
 }
 
 .featured-speakers__eyebrow {
@@ -196,7 +196,7 @@ const featuredSpeakers = [
 
 @media (max-width: 640px) {
   .featured-speakers {
-    padding-bottom: 64px;
+    padding-bottom: 40px;
   }
 }
 

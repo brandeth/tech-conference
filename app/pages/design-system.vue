@@ -50,6 +50,29 @@
       </section>
 
       <section class="grid gap-5">
+        <div class="grid gap-2">
+          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Schedule</p>
+          <h2 class="text-preset-2">Highlight card</h2>
+        </div>
+
+        <div class="grid gap-3">
+          <HighlightCard
+            v-for="session in highlightCardExamples"
+            :key="session.title"
+            :track-name="session.trackName"
+            :title="session.title"
+            :speaker-name="session.speakerName"
+            :speaker-company="session.speakerCompany"
+            :start-time="session.startTime"
+            :end-time="session.endTime"
+            :day="session.day"
+            :bg-color="session.bgColor"
+            :details="session.details"
+          />
+        </div>
+      </section>
+
+      <section class="grid gap-5">
         <div class="flex flex-wrap items-end justify-between gap-4">
           <div class="grid gap-2">
             <p class="text-preset-5 text-[var(--color-brand-green-200)]">Demo</p>
@@ -243,6 +266,42 @@ const speakerCardExamples = [
     name: 'tom kowalski',
     titleAndCompany: 'Platform Engineer @Nimbus',
     talkTitle: 'Deploy preview environments that scale',
+  },
+] as const
+
+const highlightCardExamples = [
+  {
+    trackName: 'frontend',
+    title: 'CSS container queries in production',
+    speakerName: 'Mei-Lin Zhang',
+    speakerCompany: 'Roamly',
+    startTime: '13:00',
+    endTime: '14:00',
+    day: 'Day 1',
+    bgColor: 'var(--color-brand-yellow-100)',
+    details: 'A practical walkthrough of shipping container-query based layouts in a large product without breaking older responsive patterns.',
+  },
+  {
+    trackName: 'accessibility',
+    title: 'Designing accessible audio experiences',
+    speakerName: 'Fatima Al-Rashid',
+    speakerCompany: 'Spectra',
+    startTime: '11:00',
+    endTime: '12:00',
+    day: 'Day 2',
+    bgColor: 'var(--color-brand-blue-100)',
+    details: 'Patterns for captions, transcripts, keyboard controls, and progressive enhancement in media-heavy interfaces.',
+  },
+  {
+    trackName: 'tooling',
+    title: 'Deploy preview environments that scale',
+    speakerName: 'Tom Kowalski',
+    speakerCompany: 'Nimbus',
+    startTime: '12:00',
+    endTime: '13:00',
+    day: 'Day 3',
+    bgColor: 'var(--color-brand-purple-100)',
+    details: 'How to keep preview environments fast, cheap, and trustworthy as teams and repository counts grow.',
   },
 ] as const
 
