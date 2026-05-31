@@ -47,7 +47,8 @@ import elenaAvatar from '~/assets/images/avatar-elena-vasquez.webp'
   position: relative;
   box-sizing: border-box;
   display: grid;
-  height: 100%;
+  aspect-ratio: 1.45 / 1;
+  width: 100%;
   overflow: hidden;
   background: var(--color-brand-cyan-100);
   color: var(--color-brand-neutral-900);
@@ -115,6 +116,10 @@ import elenaAvatar from '~/assets/images/avatar-elena-vasquez.webp'
 }
 
 @media (max-width: 1180px) {
+  .hero-keynote-panel {
+    aspect-ratio: auto;
+  }
+
   .hero-keynote-panel__content {
     width: 62%;
     gap: 20px;

@@ -35,7 +35,7 @@ withDefaults(defineProps<{
 .hero-section {
   display: grid;
   grid-template-columns: minmax(0, 1.42fr) minmax(390px, 1fr);
-  grid-auto-rows: 400px;
+  grid-auto-rows: auto;
   gap: 32px;
   padding: 32px 0;
 }
@@ -45,7 +45,7 @@ withDefaults(defineProps<{
   isolation: isolate;
   box-sizing: border-box;
   display: grid;
-  height: 400px;
+  aspect-ratio: 2.05 / 1;
   align-content: space-between;
   overflow: hidden;
   background: var(--color-brand-neutral-100);
@@ -92,6 +92,12 @@ withDefaults(defineProps<{
   }
 }
 
+@media (min-width: 1181px) {
+  .hero-title {
+    font-size: clamp(66px, 5.6vw, 80px);
+  }
+}
+
 @media (max-width: 1180px) {
   .hero-section {
     grid-template-columns: minmax(0, 1fr);
@@ -99,6 +105,7 @@ withDefaults(defineProps<{
   }
 
   .hero-intro-panel {
+    aspect-ratio: auto;
     height: 480px;
   }
 }

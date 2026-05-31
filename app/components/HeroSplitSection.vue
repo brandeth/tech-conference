@@ -8,8 +8,20 @@
       </p>
 
       <div class="hero-actions">
-        <a :href="primaryHref" class="primary-link">{{ primaryLabel }}</a>
-        <a :href="secondaryHref" class="secondary-link">{{ secondaryLabel }}</a>
+        <a
+          :href="primaryHref"
+          class="primary-link"
+          @click="replaceSamePageHashNavigation($event, primaryHref)"
+        >
+          {{ primaryLabel }}
+        </a>
+        <a
+          :href="secondaryHref"
+          class="secondary-link"
+          @click="replaceSamePageHashNavigation($event, secondaryHref)"
+        >
+          {{ secondaryLabel }}
+        </a>
       </div>
     </div>
 
@@ -82,6 +94,28 @@ withDefaults(defineProps<{
 > launch window ready`,
   compact: false,
 })
+
+function replaceSamePageHashNavigation(event: MouseEvent, href: string) {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+    return
+  }
+
+  const isRootHashOnHome = href.startsWith('/#') && window.location.pathname === '/'
+  const hash = isRootHashOnHome ? href.slice(1) : href
+
+  if (!hash.startsWith('#')) {
+    return
+  }
+
+  event.preventDefault()
+
+  const id = decodeURIComponent(hash.slice(1))
+  const target = document.getElementById(id)
+  const nextUrl = `${window.location.pathname}${window.location.search}${hash}`
+
+  window.history.replaceState(window.history.state, '', nextUrl)
+  target?.scrollIntoView()
+}
 </script>
 
 <style scoped>
