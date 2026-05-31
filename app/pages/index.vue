@@ -1,5 +1,5 @@
 <template>
-  <main class="home-page">
+  <main id="top" class="home-page">
     <SiteNav />
 
     <HeroSection />
@@ -9,6 +9,8 @@
     <FeaturedSpeakers />
 
     <ScheduleHighlights />
+
+    <SiteFooter />
   </main>
 </template>
 
