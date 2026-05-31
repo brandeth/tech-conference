@@ -76,7 +76,8 @@ const imageWrapStyle = computed(() => ({
 }
 
 .speaker-card__body {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 14px;
   padding: 18px 20px 20px;
 }
@@ -98,6 +99,8 @@ const imageWrapStyle = computed(() => ({
 }
 
 .speaker-card__divider {
+  flex: none;
+  margin-top: auto;
   height: 1px;
   background: var(--color-brand-neutral-600);
 }
