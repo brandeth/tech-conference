@@ -42,7 +42,17 @@
 
       <img class="highlight-card__barcode" :src="barcodeSrc" alt="" aria-hidden="true">
 
-      <p class="highlight-card__day text-preset-7">{{ day }}</p>
+      <button
+        class="highlight-card__bookmark"
+        type="button"
+        :aria-label="bookmarkLabel"
+        :aria-pressed="isBookmarked"
+        @click="isBookmarked = !isBookmarked"
+      >
+        <svg class="highlight-card__bookmark-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m12 3.5 2.58 5.24 5.78.84-4.18 4.08.99 5.76L12 16.7l-5.17 2.72.99-5.76-4.18-4.08 5.78-.84L12 3.5Z" />
+        </svg>
+      </button>
     </aside>
   </article>
 </template>
@@ -71,6 +81,7 @@ const props = withDefaults(
 )
 
 const isExpanded = ref(props.initiallyOpen)
+const isBookmarked = ref(false)
 
 const cardStyle = computed(() => ({
   '--highlight-card-bg': props.bgColor,
@@ -78,6 +89,7 @@ const cardStyle = computed(() => ({
 }))
 
 const speakerLabel = computed(() => `${props.speakerName}, ${props.speakerCompany}`)
+const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`)
 </script>
 
 <style scoped>
@@ -175,8 +187,7 @@ const speakerLabel = computed(() => `${props.speakerName}, ${props.speakerCompan
 }
 
 .highlight-card__start,
-.highlight-card__end,
-.highlight-card__day {
+.highlight-card__end {
   color: var(--color-brand-neutral-900);
 }
 
@@ -186,8 +197,62 @@ const speakerLabel = computed(() => `${props.speakerName}, ${props.speakerCompan
   object-fit: contain;
 }
 
-.highlight-card__day {
-  text-transform: uppercase;
+.highlight-card__bookmark {
+  display: inline-grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-brand-neutral-900);
+  color: var(--color-brand-neutral-100);
+  cursor: pointer;
+  padding: 0;
+}
+
+.highlight-card__bookmark:focus-visible {
+  outline: 1px dashed var(--color-brand-neutral-900);
+  outline-offset: 4px;
+}
+
+.highlight-card__bookmark-icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.highlight-card__bookmark[aria-pressed="true"] .highlight-card__bookmark-icon {
+  fill: currentColor;
+}
+
+@media (min-width: 761px) and (max-width: 1024px) {
+  .highlight-card {
+    grid-template-columns: 40px minmax(0, 1fr) 168px;
+    min-height: 188px;
+  }
+
+  .highlight-card__content {
+    padding: 24px 28px;
+  }
+
+  .highlight-card__title {
+    font-size: 28px;
+    line-height: 110%;
+  }
+
+  .highlight-card__meta {
+    gap: 9px;
+    padding: 20px 18px;
+  }
+
+  .highlight-card__barcode {
+    width: 116px;
+    height: 38px;
+  }
+
 }
 
 @media (max-width: 760px) {
@@ -242,9 +307,8 @@ const speakerLabel = computed(() => `${props.speakerName}, ${props.speakerCompan
     height: 62px;
   }
 
-  .highlight-card__day {
+  .highlight-card__bookmark {
     justify-self: end;
-    white-space: nowrap;
   }
 }
 </style>
