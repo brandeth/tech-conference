@@ -84,7 +84,6 @@ const speakerLabel = computed(() => `${props.speakerName}, ${props.speakerCompan
 .highlight-card {
   display: grid;
   width: 100%;
-  max-width: 1360px;
   min-height: 150px;
   grid-template-columns: 40px minmax(0, 1fr) 156px;
   border: 1px solid var(--color-brand-neutral-600);
@@ -109,7 +108,7 @@ const speakerLabel = computed(() => `${props.speakerName}, ${props.speakerCompan
   display: grid;
   align-content: center;
   gap: 14px;
-  padding: 28px 24px;
+  padding: 24px;
 }
 
 .highlight-card__summary {
@@ -166,7 +165,7 @@ const speakerLabel = computed(() => `${props.speakerName}, ${props.speakerCompan
   justify-items: center;
   gap: 8px;
   border-left: 2px dashed var(--color-brand-neutral-900);
-  padding: 18px 22px;
+  padding: 24px;
   text-align: center;
 }
 
@@ -210,7 +209,7 @@ const speakerLabel = computed(() => `${props.speakerName}, ${props.speakerCompan
 
   .highlight-card__content {
     gap: 20px;
-    padding: 25px 24px 24px;
+    padding: 24px;
   }
 
   .highlight-card__summary {
@@ -228,7 +227,7 @@ const speakerLabel = computed(() => `${props.speakerName}, ${props.speakerCompan
     border-top: 2px dashed var(--color-brand-neutral-900);
     border-left: 0;
     column-gap: 16px;
-    padding: 14px 24px 12px;
+    padding: 24px;
     text-align: left;
   }
 

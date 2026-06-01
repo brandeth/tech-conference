@@ -172,11 +172,24 @@ const tracks = [
 
 @media (max-width: 900px) {
   .site-footer__main {
+    gap: 34px;
     grid-template-columns: 1fr;
+    padding: 48px 0 42px;
+  }
+
+  .site-footer__brand,
+  .site-footer__description {
+    max-width: none;
   }
 }
 
-@media (max-width: 640px) {
+@media (min-width: 561px) and (max-width: 900px) {
+  .site-footer__nav {
+    gap: 9rem;
+  }
+}
+
+@media (max-width: 560px) {
   .site-footer__main {
     gap: 32px;
     padding: 32px 0;
