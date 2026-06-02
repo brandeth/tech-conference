@@ -42,6 +42,8 @@
 
       <img class="highlight-card__barcode" :src="barcodeSrc" alt="" aria-hidden="true">
 
+      <p class="highlight-card__day text-preset-7">{{ day }}</p>
+
       <button
         class="highlight-card__bookmark"
         type="button"
@@ -197,8 +199,13 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`)
   object-fit: contain;
 }
 
+.highlight-card__day {
+  color: var(--color-brand-neutral-900);
+  text-transform: uppercase;
+}
+
 .highlight-card__bookmark {
-  display: inline-grid;
+  display: none;
   width: 38px;
   height: 38px;
   place-items: center;
@@ -251,6 +258,14 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`)
   .highlight-card__barcode {
     width: 116px;
     height: 38px;
+  }
+
+  .highlight-card__day {
+    display: none;
+  }
+
+  .highlight-card__bookmark {
+    display: inline-grid;
   }
 
 }
