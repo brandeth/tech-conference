@@ -12,9 +12,16 @@
       <div class="highlight-card__summary">
         <h3 class="highlight-card__title text-preset-2">{{ title }}</h3>
 
-        <p class="highlight-card__speaker text-preset-5" :aria-label="speakerLabel">
-          <span class="highlight-card__speaker-name text-preset-5-bold">{{ speakerName }}</span>
-          <span class="highlight-card__speaker-divider" aria-hidden="true">//</span>
+        <p
+          class="highlight-card__speaker text-preset-5"
+          :aria-label="speakerLabel"
+        >
+          <span class="highlight-card__speaker-name text-preset-5-bold">{{
+            speakerName
+          }}</span>
+          <span class="highlight-card__speaker-divider" aria-hidden="true"
+            >//</span
+          >
           <span>{{ speakerCompany }}</span>
         </p>
       </div>
@@ -25,8 +32,8 @@
         :aria-expanded="isExpanded"
         @click="isExpanded = !isExpanded"
       >
-        <span aria-hidden="true">{{ isExpanded ? '-' : '+' }}</span>
-        {{ isExpanded ? 'Hide details' : 'Show details' }}
+        <span aria-hidden="true">{{ isExpanded ? "-" : "+" }}</span>
+        {{ isExpanded ? "Hide details" : "Show details" }}
       </button>
 
       <div v-if="isExpanded" class="highlight-card__details text-preset-6">
@@ -40,7 +47,12 @@
         <time class="highlight-card__end text-preset-7">{{ endTime }}</time>
       </div>
 
-      <img class="highlight-card__barcode" :src="barcodeSrc" alt="" aria-hidden="true">
+      <img
+        class="highlight-card__barcode"
+        :src="barcodeSrc"
+        alt=""
+        aria-hidden="true"
+      />
 
       <p class="highlight-card__day text-preset-7">{{ day }}</p>
 
@@ -51,8 +63,14 @@
         :aria-pressed="isBookmarked"
         @click="isBookmarked = !isBookmarked"
       >
-        <svg class="highlight-card__bookmark-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="m12 3.5 2.58 5.24 5.78.84-4.18 4.08.99 5.76L12 16.7l-5.17 2.72.99-5.76-4.18-4.08 5.78-.84L12 3.5Z" />
+        <svg
+          class="highlight-card__bookmark-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            d="m12 3.5 2.58 5.24 5.78.84-4.18 4.08.99 5.76L12 16.7l-5.17 2.72.99-5.76-4.18-4.08 5.78-.84L12 3.5Z"
+          />
         </svg>
       </button>
     </aside>
@@ -60,38 +78,40 @@
 </template>
 
 <script setup lang="ts">
-import barcodeSrc from '~/assets/images/barcode.svg'
+import barcodeSrc from "~/assets/images/barcode.svg";
 
 const props = withDefaults(
   defineProps<{
-    trackName: string
-    title: string
-    speakerName: string
-    speakerCompany: string
-    startTime: string
-    endTime: string
-    day: string
-    bgColor?: string
-    details?: string
-    initiallyOpen?: boolean
+    trackName: string;
+    title: string;
+    speakerName: string;
+    speakerCompany: string;
+    startTime: string;
+    endTime: string;
+    day: string;
+    bgColor?: string;
+    details?: string;
+    initiallyOpen?: boolean;
   }>(),
   {
-    bgColor: 'var(--color-brand-yellow-100)',
-    details: '',
+    bgColor: "var(--color-brand-yellow-100)",
+    details: "",
     initiallyOpen: false,
   },
-)
+);
 
-const isExpanded = ref(props.initiallyOpen)
-const isBookmarked = ref(false)
+const isExpanded = ref(props.initiallyOpen);
+const isBookmarked = ref(false);
 
 const cardStyle = computed(() => ({
-  '--highlight-card-bg': props.bgColor,
-  '--highlight-card-accent': props.bgColor,
-}))
+  "--highlight-card-bg": props.bgColor,
+  "--highlight-card-accent": props.bgColor,
+}));
 
-const speakerLabel = computed(() => `${props.speakerName}, ${props.speakerCompany}`)
-const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`)
+const speakerLabel = computed(
+  () => `${props.speakerName}, ${props.speakerCompany}`,
+);
+const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
 </script>
 
 <style scoped>
@@ -267,7 +287,6 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`)
   .highlight-card__bookmark {
     display: inline-grid;
   }
-
 }
 
 @media (max-width: 760px) {
