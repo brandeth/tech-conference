@@ -203,6 +203,10 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
   text-align: center;
 }
 
+.highlight-card--expanded .highlight-card__meta {
+  align-content: space-between;
+}
+
 .highlight-card__time {
   display: grid;
   gap: 0;

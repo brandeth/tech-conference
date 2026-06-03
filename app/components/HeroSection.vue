@@ -1,7 +1,10 @@
 <template>
-  <section class="hero-section mx-auto w-[calc(100%_-_40px)] max-w-[1440px] max-[560px]:w-[calc(100%_-_32px)]" aria-labelledby="hero-title">
+  <section
+    class="hero-section mx-auto w-[calc(100%_-_40px)] max-w-[1440px] max-[560px]:w-[calc(100%_-_32px)]"
+    aria-labelledby="hero-title"
+  >
     <div class="hero-intro-panel">
-      <img class="hero-pattern" :src="horizonText" alt="" aria-hidden="true">
+      <img class="hero-pattern" :src="horizonText" alt="" aria-hidden="true" />
 
       <h1 id="hero-title" class="text-preset-1 hero-title">
         {{ title }}
@@ -18,17 +21,20 @@
 </template>
 
 <script setup lang="ts">
-import horizonText from '~/assets/images/horizon-text.svg'
+import horizonText from "~/assets/images/horizon-text.svg";
 
-withDefaults(defineProps<{
-  title?: string
-  date?: string
-  location?: string
-}>(), {
-  title: 'where code meets the machine',
-  date: 'NOV 15-17, 2026',
-  location: 'PIER 70, SF',
-})
+withDefaults(
+  defineProps<{
+    title?: string;
+    date?: string;
+    location?: string;
+  }>(),
+  {
+    title: "where code meets the machine",
+    date: "NOV 15-17, 2026",
+    location: "PIER 70, SF",
+  },
+);
 </script>
 
 <style scoped>
@@ -111,8 +117,28 @@ withDefaults(defineProps<{
 }
 
 @media (max-width: 1180px) and (min-width: 768px) {
+  .hero-section {
+    padding-top: 40px;
+  }
+
   .hero-intro-panel {
     height: 360px;
+    padding: 28px 24px 24px;
+  }
+
+  .hero-title {
+    max-width: 650px;
+    font-size: 76px;
+    line-height: 100%;
+  }
+
+  .hero-pattern {
+    top: 55%;
+    width: min(76%, 560px);
+  }
+
+  .hero-meta {
+    padding-top: 16px;
   }
 }
 

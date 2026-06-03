@@ -1,8 +1,15 @@
 <template>
   <header class="site-nav">
-    <div class="site-nav__inner mx-auto w-[calc(100%_-_40px)] max-w-[1440px] max-[560px]:w-[calc(100%_-_32px)]">
-      <NuxtLink to="/" class="site-nav__brand" aria-label="Dev Horizon home" @click="closeMenu">
-        <img src="~/assets/images/logo.svg" alt="" class="site-nav__logo">
+    <div
+      class="site-nav__inner mx-auto w-[calc(100%_-_40px)] max-w-[1440px] max-[560px]:w-[calc(100%_-_32px)]"
+    >
+      <NuxtLink
+        to="/"
+        class="site-nav__brand"
+        aria-label="Dev Horizon home"
+        @click="closeMenu"
+      >
+        <img src="~/assets/images/logo.svg" alt="" class="site-nav__logo" />
       </NuxtLink>
 
       <nav class="site-nav__links" aria-label="Primary navigation">
@@ -24,11 +31,18 @@
         class="site-nav__menu-button"
         :aria-expanded="isMenuOpen"
         aria-controls="mobile-navigation"
-        :aria-label="isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'"
+        :aria-label="
+          isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'
+        "
         @click="isMenuOpen = !isMenuOpen"
       >
-        <img v-if="isMenuOpen" src="~/assets/images/close.svg" alt="" aria-hidden="true">
-        <img v-else src="~/assets/images/bar.svg" alt="" aria-hidden="true">
+        <img
+          v-if="isMenuOpen"
+          src="~/assets/images/close.svg"
+          alt=""
+          aria-hidden="true"
+        />
+        <img v-else src="~/assets/images/bar.svg" alt="" aria-hidden="true" />
       </button>
     </div>
 
@@ -56,34 +70,34 @@
 </template>
 
 <script setup lang="ts">
-const route = useRoute()
-const isMenuOpen = ref(false)
+const route = useRoute();
+const isMenuOpen = ref(false);
 
 const navItems = [
-  { label: 'Home', to: '/', path: '/', hash: '' },
-  { label: 'Schedule', to: '/#schedule', path: '/', hash: '#schedule' },
-  { label: 'Speakers', to: '/#speakers', path: '/', hash: '#speakers' },
-] as const
+  { label: "Home", to: "/", path: "/", hash: "" },
+  { label: "Schedule", to: "/#schedule", path: "/", hash: "#schedule" },
+  { label: "Speakers", to: "/#speakers", path: "/", hash: "#speakers" },
+] as const;
 
 const mobilePanelStyle = computed(() => ({
-  maxHeight: isMenuOpen.value ? '240px' : '0px',
-  paddingBottom: isMenuOpen.value ? '20px' : '0px',
-}))
+  maxHeight: isMenuOpen.value ? "240px" : "0px",
+  paddingBottom: isMenuOpen.value ? "20px" : "0px",
+}));
 
 function closeMenu() {
-  isMenuOpen.value = false
+  isMenuOpen.value = false;
 }
 
 function isNavItemActive(item: (typeof navItems)[number]) {
-  return route.path === item.path && route.hash === item.hash
+  return route.path === item.path && route.hash === item.hash;
 }
 
 function getAriaCurrent(item: (typeof navItems)[number]) {
   if (!isNavItemActive(item)) {
-    return undefined
+    return undefined;
   }
 
-  return item.hash ? 'location' : 'page'
+  return item.hash ? "location" : "page";
 }
 </script>
 
@@ -128,18 +142,18 @@ function getAriaCurrent(item: (typeof navItems)[number]) {
 .site-nav__button {
   display: inline-flex;
   min-width: 122px;
-  min-height: 60px;
+  min-height: 40px;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--color-brand-neutral-100);
   background: var(--color-brand-neutral-900);
   color: var(--color-brand-neutral-100);
   font-family: var(--font-jetbrains-mono);
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 140%;
   letter-spacing: 0;
-  padding: 15px 32px;
+  padding: 10px 24px;
   text-decoration: none;
   text-transform: uppercase;
   transition:
@@ -274,12 +288,12 @@ function getAriaCurrent(item: (typeof navItems)[number]) {
 
 @media (max-width: 1023px) {
   .site-nav__inner {
-    min-height: 160px;
-    padding: 40px 0;
+    min-height: 78px;
+    padding: 19px 0;
   }
 
   .site-nav__logo {
-    width: clamp(180px, 24vw, 288px);
+    width: 142px;
   }
 
   .site-nav__links {
@@ -287,10 +301,10 @@ function getAriaCurrent(item: (typeof navItems)[number]) {
   }
 
   .site-nav__button {
-    min-width: 132px;
-    min-height: 80px;
-    font-size: 24px;
-    padding: 19px 32px;
+    min-width: 84px;
+    min-height: 40px;
+    font-size: 14px;
+    padding: 10px 24px;
   }
 }
 
