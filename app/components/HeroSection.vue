@@ -6,7 +6,7 @@
     <div class="hero-intro-panel">
       <img class="hero-pattern" :src="horizonText" alt="" aria-hidden="true" />
 
-      <h1 id="hero-title" class="text-preset-1 hero-title">
+      <h1 id="hero-title" class="text-preset-1-mobile hero-title">
         {{ title }}
       </h1>
 
@@ -149,7 +149,8 @@ withDefaults(
   }
 
   .hero-intro-panel {
-    height: 560px;
+    height: 220px;
+    padding: 1rem;
   }
 
   .hero-pattern {
@@ -158,8 +159,7 @@ withDefaults(
   }
 
   .hero-meta {
-    flex-direction: column;
-    gap: 8px;
+    gap: 16px;
     padding-top: 18px;
   }
 }

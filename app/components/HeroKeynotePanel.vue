@@ -143,12 +143,20 @@ import elenaAvatar from '~/assets/images/avatar-elena-vasquez.webp'
 
 @media (max-width: 760px) {
   .hero-keynote-panel {
-    height: 560px;
+    height: 340px;
   }
 
   .hero-keynote-panel__content {
     width: min(72%, 390px);
-    padding: 24px 20px;
+    padding: 20px;
+  }
+
+  .hero-keynote-panel__talk {
+    margin-top: 8px;
+  }
+
+  .hero-keynote-panel__button {
+    margin-top: 0;
   }
 
   .hero-keynote-panel__avatar {
@@ -159,7 +167,7 @@ import elenaAvatar from '~/assets/images/avatar-elena-vasquez.webp'
 
 @media (max-width: 520px) {
   .hero-keynote-panel {
-    height: 620px;
+    height: 340px;
   }
 
   .hero-keynote-panel__content {

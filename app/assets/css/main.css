@@ -35,6 +35,14 @@
     letter-spacing: -2px;
   }
 
+  .text-preset-1-mobile {
+    font-family: var(--font-chakra-petch);
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: -2px;
+  }
+
   .text-preset-2 {
     font-family: var(--font-chakra-petch);
     font-size: 24px;
