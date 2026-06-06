@@ -309,13 +309,19 @@ function getAriaCurrent(item: (typeof navItems)[number]) {
 }
 
 @media (max-width: 767px) {
+  .site-nav {
+    border-bottom: 0;
+  }
+
   .site-nav__inner {
-    min-height: 128px;
-    padding: 24px 0;
+    height: 64px;
+    min-height: 64px;
+    padding: 0;
+    border-bottom: 1px solid var(--color-brand-neutral-600);
   }
 
   .site-nav__logo {
-    width: min(64vw, calc(100vw - 124px));
+    width: 191px;
   }
 
   .site-nav__links {
@@ -325,6 +331,10 @@ function getAriaCurrent(item: (typeof navItems)[number]) {
   .site-nav .site-nav__menu-button {
     display: inline-flex;
     flex: 0 0 auto;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0;
   }
 
   .site-nav__mobile-panel {
