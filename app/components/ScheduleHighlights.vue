@@ -23,7 +23,7 @@
       />
     </div>
 
-    <NuxtLink class="schedule-highlights__cta" to="#">
+    <NuxtLink class="schedule-highlights__cta" to="/schedule">
       View full schedule
     </NuxtLink>
   </section>

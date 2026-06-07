@@ -57,15 +57,15 @@
 <script setup lang="ts">
 const navItems = [
   { label: 'Home', to: '/' },
-  { label: 'Schedule', to: '/#schedule' },
+  { label: 'Schedule', to: '/schedule' },
   { label: 'Speakers', to: '/#speakers' },
 ] as const
 
 const tracks = [
-  { label: 'Frontend', to: '/#schedule' },
-  { label: 'Performance', to: '/#schedule' },
-  { label: 'Accessibility', to: '/#schedule' },
-  { label: 'Tooling', to: '/#schedule' },
+  { label: 'Frontend', to: '/schedule' },
+  { label: 'Performance', to: '/schedule' },
+  { label: 'Accessibility', to: '/schedule' },
+  { label: 'Tooling', to: '/schedule' },
 ] as const
 </script>
 

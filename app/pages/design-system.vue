@@ -73,6 +73,17 @@
       </section>
 
       <section class="grid gap-5">
+        <div class="grid gap-2">
+          <p class="text-preset-5 text-[var(--color-brand-green-200)]">Schedule</p>
+          <h2 class="text-preset-2">Filter bar</h2>
+        </div>
+
+        <div class="border border-[var(--color-brand-neutral-600)] bg-[var(--color-brand-neutral-900)] p-5">
+          <ScheduleFilter />
+        </div>
+      </section>
+
+      <section class="grid gap-5">
         <div class="flex flex-wrap items-end justify-between gap-4">
           <div class="grid gap-2">
             <p class="text-preset-5 text-[var(--color-brand-green-200)]">Demo</p>

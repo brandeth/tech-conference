@@ -191,6 +191,7 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
 .highlight-card__details {
   max-width: 760px;
   color: var(--color-brand-neutral-600);
+  white-space: pre-line;
 }
 
 .highlight-card__meta {

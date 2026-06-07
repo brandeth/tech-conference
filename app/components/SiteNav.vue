@@ -75,7 +75,7 @@ const isMenuOpen = ref(false);
 
 const navItems = [
   { label: "Home", to: "/", path: "/", hash: "" },
-  { label: "Schedule", to: "/#schedule", path: "/", hash: "#schedule" },
+  { label: "Schedule", to: "/schedule", path: "/schedule", hash: "" },
   { label: "Speakers", to: "/#speakers", path: "/", hash: "#speakers" },
 ] as const;
 
