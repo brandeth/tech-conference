@@ -1,7 +1,7 @@
 <template>
   <section
     id="schedule-highlights"
-    class="schedule-highlights mx-auto w-[calc(100%_-_40px)] max-w-[1440px] max-[560px]:w-[calc(100%_-_32px)]"
+    class="schedule-highlights mx-auto w-[calc(100%_-_40px)] max-w-[1440px] max-[560px]:w-[calc(100%_-_30px)]"
     aria-labelledby="schedule-highlights-title"
   >
     <p class="schedule-highlights__eyebrow text-preset-6-extrabold" aria-hidden="true">// SCHEDULE_HIGHLIGHTS</p>

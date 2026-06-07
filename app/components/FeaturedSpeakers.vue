@@ -125,10 +125,10 @@ const featuredSpeakers = [
   justify-self: center;
   margin-top: 8px;
   padding: 16px 24px;
-  border: 1px solid var(--color-brand-neutral-100);
-  background: var(--color-brand-neutral-900);
-  box-shadow: 2px 2px 0 var(--color-brand-neutral-100);
-  color: var(--color-brand-neutral-100);
+  border: 1px solid var(--color-brand-green-200);
+  background: var(--color-brand-green-200);
+  box-shadow: 4px 4px 0 var(--color-brand-neutral-600);
+  color: var(--color-brand-neutral-900);
   font-family: var(--font-jetbrains-mono);
   font-size: 16px;
   font-weight: 700;

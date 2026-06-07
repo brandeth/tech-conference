@@ -142,7 +142,7 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
   display: grid;
   align-content: center;
   gap: 14px;
-  padding: 24px;
+  padding: 16px;
 }
 
 .highlight-card__summary {
@@ -199,7 +199,7 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
   justify-items: center;
   gap: 8px;
   border-left: 2px dashed var(--color-brand-neutral-900);
-  padding: 24px;
+  padding: 16px;
   text-align: center;
 }
 
@@ -266,7 +266,7 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
   }
 
   .highlight-card__content {
-    padding: 24px 28px;
+    padding: 16px;
   }
 
   .highlight-card__title {
@@ -276,7 +276,7 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
 
   .highlight-card__meta {
     gap: 9px;
-    padding: 20px 18px;
+    padding: 16px;
   }
 
   .highlight-card__barcode {
@@ -312,7 +312,7 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
 
   .highlight-card__content {
     gap: 20px;
-    padding: 24px;
+    padding: 16px;
   }
 
   .highlight-card__summary {
@@ -330,7 +330,7 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
     border-top: 2px dashed var(--color-brand-neutral-900);
     border-left: 0;
     column-gap: 16px;
-    padding: 24px;
+    padding: 16px;
     text-align: left;
   }
 
