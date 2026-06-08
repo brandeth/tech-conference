@@ -9,8 +9,6 @@
     <FeaturedSpeakers />
 
     <ScheduleHighlights />
-
-    <SiteFooter />
   </main>
 </template>
 
