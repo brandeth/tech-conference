@@ -36,9 +36,20 @@
         {{ isExpanded ? "Hide details" : "Show details" }}
       </button>
 
-      <div v-if="isExpanded" class="highlight-card__details text-preset-6">
-        <slot>{{ details }}</slot>
-      </div>
+      <Transition
+        name="highlight-card-details"
+        :duration="transitionDuration"
+        @before-enter="onDetailsBeforeEnter"
+        @enter="onDetailsEnter"
+        @after-enter="onDetailsAfterEnter"
+        @before-leave="onDetailsBeforeLeave"
+        @leave="onDetailsLeave"
+        @after-leave="onDetailsAfterLeave"
+      >
+        <div v-if="isExpanded" class="highlight-card__details text-preset-6">
+          <slot>{{ details }}</slot>
+        </div>
+      </Transition>
     </div>
 
     <aside class="highlight-card__meta" aria-label="Session timing">
@@ -47,12 +58,16 @@
         <time class="highlight-card__end text-preset-7">{{ endTime }}</time>
       </div>
 
+      <span class="highlight-card__meta-spacer" aria-hidden="true" />
+
       <img
         class="highlight-card__barcode"
         :src="barcodeSrc"
         alt=""
         aria-hidden="true"
       />
+
+      <span class="highlight-card__meta-spacer" aria-hidden="true" />
 
       <p class="highlight-card__day text-preset-7">{{ day }}</p>
 
@@ -92,11 +107,13 @@ const props = withDefaults(
     bgColor?: string;
     details?: string;
     initiallyOpen?: boolean;
+    transitionDuration?: number;
   }>(),
   {
     bgColor: "var(--color-brand-yellow-100)",
     details: "",
     initiallyOpen: false,
+    transitionDuration: 260,
   },
 );
 
@@ -106,12 +123,63 @@ const isBookmarked = ref(false);
 const cardStyle = computed(() => ({
   "--highlight-card-bg": props.bgColor,
   "--highlight-card-accent": props.bgColor,
+  "--highlight-card-transition-duration": `${props.transitionDuration}ms`,
 }));
 
 const speakerLabel = computed(
   () => `${props.speakerName}, ${props.speakerCompany}`,
 );
 const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
+
+const transitionDuration = computed(() => props.transitionDuration);
+
+function setDetailsHeight(element: Element, height: string) {
+  const detailsElement = element as HTMLElement;
+
+  detailsElement.style.height = height;
+}
+
+function prepareDetailsTransition(element: Element) {
+  const detailsElement = element as HTMLElement;
+
+  detailsElement.style.overflow = "hidden";
+}
+
+function cleanupDetailsTransition(element: Element) {
+  const detailsElement = element as HTMLElement;
+
+  detailsElement.style.height = "";
+  detailsElement.style.overflow = "";
+}
+
+function onDetailsBeforeEnter(element: Element) {
+  prepareDetailsTransition(element);
+  setDetailsHeight(element, "0");
+}
+
+function onDetailsEnter(element: Element) {
+  setDetailsHeight(element, `${(element as HTMLElement).scrollHeight}px`);
+}
+
+function onDetailsAfterEnter(element: Element) {
+  cleanupDetailsTransition(element);
+}
+
+function onDetailsBeforeLeave(element: Element) {
+  const detailsElement = element as HTMLElement;
+
+  prepareDetailsTransition(detailsElement);
+  setDetailsHeight(detailsElement, `${detailsElement.scrollHeight}px`);
+  void detailsElement.offsetHeight;
+}
+
+function onDetailsLeave(element: Element) {
+  setDetailsHeight(element, "0");
+}
+
+function onDetailsAfterLeave(element: Element) {
+  cleanupDetailsTransition(element);
+}
 </script>
 
 <style scoped>
@@ -140,7 +208,7 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
 
 .highlight-card__content {
   display: grid;
-  align-content: center;
+  align-content: start;
   gap: 14px;
   padding: 16px;
 }
@@ -194,22 +262,68 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
   white-space: pre-line;
 }
 
+.highlight-card-details-enter-active,
+.highlight-card-details-leave-active {
+  transition:
+    height var(--highlight-card-transition-duration) ease,
+    opacity var(--highlight-card-transition-duration) ease,
+    transform var(--highlight-card-transition-duration) ease;
+  will-change: height, opacity, transform;
+}
+
+.highlight-card-details-enter-from,
+.highlight-card-details-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .highlight-card-details-enter-active,
+  .highlight-card-details-leave-active {
+    transition-duration: 1ms;
+  }
+}
+
 .highlight-card__meta {
   display: grid;
-  align-content: center;
+  grid-template-rows:
+    minmax(0, 1fr) auto minmax(0, 0fr) auto minmax(0, 0fr) auto minmax(
+      0,
+      1fr
+    );
+  align-content: stretch;
   justify-items: center;
-  gap: 8px;
   border-left: 2px dashed var(--color-brand-neutral-900);
   padding: 16px;
   text-align: center;
+  transition: grid-template-rows var(--highlight-card-transition-duration) ease;
 }
 
 .highlight-card--expanded .highlight-card__meta {
-  align-content: space-between;
+  grid-template-rows:
+    minmax(0, 0fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(
+      0,
+      0fr
+    );
+}
+
+.highlight-card__meta::before,
+.highlight-card__meta::after {
+  content: "";
+  min-height: 0;
+}
+
+.highlight-card__meta::before {
+  grid-row: 1;
+}
+
+.highlight-card__meta::after {
+  grid-row: 7;
 }
 
 .highlight-card__time {
   display: grid;
+  grid-row: 2;
   gap: 0;
 }
 
@@ -219,18 +333,22 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
 }
 
 .highlight-card__barcode {
+  grid-row: 4;
   width: 122px;
   height: 40px;
+  margin-block: 8px;
   object-fit: contain;
 }
 
 .highlight-card__day {
+  grid-row: 6;
   color: var(--color-brand-neutral-900);
   text-transform: uppercase;
 }
 
 .highlight-card__bookmark {
   display: none;
+  grid-row: 6;
   width: 38px;
   height: 38px;
   place-items: center;
@@ -275,14 +393,10 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
     line-height: 110%;
   }
 
-  .highlight-card__meta {
-    gap: 9px;
-    padding: 16px;
-  }
-
   .highlight-card__barcode {
     width: 116px;
     height: 38px;
+    margin-block: 9px;
   }
 
   .highlight-card__day {
@@ -327,7 +441,9 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
   .highlight-card__meta {
     grid-column: 1 / -1;
     grid-template-columns: 64px minmax(0, 1fr) auto;
+    grid-template-rows: none;
     align-items: center;
+    align-content: center;
     border-top: 2px dashed var(--color-brand-neutral-900);
     border-left: 0;
     column-gap: 16px;
@@ -336,18 +452,35 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
   }
 
   .highlight-card__time {
+    grid-row: auto;
     justify-self: start;
   }
 
   .highlight-card__barcode {
+    grid-row: auto;
     justify-self: center;
     width: 179px;
     max-width: 36vw;
     height: 62px;
+    margin-block: 0;
+  }
+
+  .highlight-card__day {
+    grid-row: auto;
   }
 
   .highlight-card__bookmark {
+    grid-row: auto;
     justify-self: end;
+  }
+
+  .highlight-card__meta-spacer {
+    display: none;
+  }
+
+  .highlight-card__meta::before,
+  .highlight-card__meta::after {
+    display: none;
   }
 }
 </style>

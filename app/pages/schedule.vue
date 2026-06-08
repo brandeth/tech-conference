@@ -241,6 +241,10 @@ const filteredSessions = computed(() =>
   gap: 16px;
 }
 
+.schedule-page :deep(.highlight-card__content) {
+  padding: 24px;
+}
+
 .schedule-page__empty {
   border: 1px solid var(--color-brand-neutral-600);
   padding: 24px;
