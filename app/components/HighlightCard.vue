@@ -434,44 +434,75 @@ function onDetailsAfterLeave(element: Element) {
     gap: 17px;
   }
 
+  .highlight-card__title {
+    font-size: 32px;
+    line-height: 110%;
+  }
+
   .highlight-card__speaker {
     gap: 0 15px;
   }
 
+  .highlight-card__toggle {
+    order: 3;
+  }
+
+  .highlight-card__details {
+    order: 2;
+    max-width: none;
+    border-top: 1px solid rgb(0 21 29 / 12%);
+    padding-top: 24px;
+  }
+
   .highlight-card__meta {
     grid-column: 1 / -1;
-    grid-template-columns: 64px minmax(0, 1fr) auto;
+    grid-template-columns: 84px minmax(0, 1fr) 52px;
     grid-template-rows: none;
+    min-height: 108px;
     align-items: center;
     align-content: center;
     border-top: 2px dashed var(--color-brand-neutral-900);
     border-left: 0;
     column-gap: 16px;
-    padding: 16px;
+    padding: 20px 24px 18px;
     text-align: left;
+  }
+
+  .highlight-card--expanded .highlight-card__meta {
+    grid-template-rows: none;
   }
 
   .highlight-card__time {
     grid-row: auto;
+    gap: 4px;
     justify-self: start;
   }
 
   .highlight-card__barcode {
     grid-row: auto;
     justify-self: center;
-    width: 179px;
-    max-width: 36vw;
+    width: 184px;
+    max-width: 100%;
     height: 62px;
     margin-block: 0;
   }
 
   .highlight-card__day {
     grid-row: auto;
+    display: none;
   }
 
   .highlight-card__bookmark {
+    display: inline-grid;
     grid-row: auto;
     justify-self: end;
+    width: 52px;
+    height: 52px;
+  }
+
+  .highlight-card__bookmark-icon {
+    width: 28px;
+    height: 28px;
   }
 
   .highlight-card__meta-spacer {

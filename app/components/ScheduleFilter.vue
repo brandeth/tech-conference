@@ -1,7 +1,7 @@
 <template>
   <section class="schedule-filter" :aria-label="ariaLabel">
     <div class="schedule-filter__controls">
-      <div class="schedule-filter__group" role="tablist" aria-label="Schedule days">
+      <div class="schedule-filter__group schedule-filter__days" role="tablist" aria-label="Schedule days">
         <Button
           v-for="day in days"
           :key="day.value"
@@ -17,7 +17,7 @@
 
       <span class="schedule-filter__separator" aria-hidden="true" />
 
-      <div class="schedule-filter__group" aria-label="Session filters">
+      <div class="schedule-filter__group schedule-filter__tracks" aria-label="Session filters">
         <Button
           v-for="filter in filters"
           :key="filter.value"
@@ -139,11 +139,54 @@ function clearFilters() {
   padding-left: 4px;
 }
 
+@media (max-width: 1024px) {
+  .schedule-filter {
+    overflow-x: visible;
+  }
+
+  .schedule-filter__controls {
+    width: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .schedule-filter__group {
+    min-width: 0;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+  }
+
+  .schedule-filter__actions {
+    padding-left: 0;
+  }
+}
+
 @media (max-width: 640px) {
   .schedule-filter {
-    margin-right: -16px;
-    padding-right: 16px;
+    margin-right: 0;
+    padding-right: 0;
     padding-bottom: 20px;
+  }
+
+  .schedule-filter__controls {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px 12px;
+  }
+
+  .schedule-filter__days {
+    gap: 14px;
+  }
+
+  .schedule-filter__separator {
+    align-self: center;
+  }
+
+  .schedule-filter__tracks,
+  .schedule-filter__actions {
+    display: contents;
   }
 }
 </style>
