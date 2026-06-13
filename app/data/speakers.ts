@@ -26,6 +26,11 @@ export type Speaker = {
   name: string
   titleAndCompany: string
   talkTitle: string
+  bio?: string
+  trackName?: string
+  startTime?: string
+  endTime?: string
+  day?: string
 }
 
 export const speakers = [
@@ -36,6 +41,11 @@ export const speakers = [
     name: 'elena vasquez',
     titleAndCompany: 'Principal Frontend Engineer\n@ByteCraft',
     talkTitle: 'The next frontier of web development',
+    bio: 'Elena has spent the last decade pushing the boundaries of in-browser development environments. She led the browser-native IDE initiative at ByteCraft and is a frequent contributor to the TC39 process. Her work focuses on making the web platform a first-class development target.',
+    trackName: 'keynote',
+    startTime: '9:00',
+    endTime: '10:00',
+    day: 'Day 1',
   },
   {
     imageSrc: aishaAvatar,

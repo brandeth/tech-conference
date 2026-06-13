@@ -13,17 +13,28 @@
         :name="speaker.name"
         :title-and-company="speaker.titleAndCompany"
         :talk-title="speaker.talkTitle"
+        @select="openSpeaker(speaker)"
       />
     </div>
 
     <NuxtLink class="featured-speakers__cta" to="/speakers">
       View all speakers
     </NuxtLink>
+
+    <SpeakerDialog v-model:open="isDialogOpen" :speaker="selectedSpeaker" />
   </section>
 </template>
 
 <script setup lang="ts">
-import { featuredSpeakers } from '~/data/speakers'
+import { featuredSpeakers, type Speaker } from '~/data/speakers'
+
+const selectedSpeaker = ref<Speaker | null>(null)
+const isDialogOpen = ref(false)
+
+const openSpeaker = (speaker: Speaker) => {
+  selectedSpeaker.value = speaker
+  isDialogOpen.value = true
+}
 </script>
 
 <style scoped>

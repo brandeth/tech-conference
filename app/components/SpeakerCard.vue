@@ -1,5 +1,5 @@
 <template>
-  <article class="speaker-card">
+  <button class="speaker-card" type="button" @click="$emit('select')">
     <div class="speaker-card__image-wrap" :style="imageWrapStyle">
       <img class="speaker-card__image" :src="imageSrc" :alt="imageAlt">
     </div>
@@ -20,7 +20,7 @@
         {{ talkTitle }}
       </p>
     </div>
-  </article>
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -37,6 +37,10 @@ const props = withDefaults(defineProps<{
   imageAlt: '',
 })
 
+defineEmits<{
+  select: []
+}>()
+
 const imageWrapStyle = computed(() => ({
   '--speaker-image-bg': props.imageBackgroundColor,
   '--speaker-pattern': `url(${avatarPattern})`,
@@ -52,6 +56,20 @@ const imageWrapStyle = computed(() => ({
   overflow: hidden;
   border: 1px solid var(--color-brand-neutral-600);
   background: var(--color-brand-neutral-800);
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
+.speaker-card:hover {
+  border-color: var(--color-brand-neutral-500);
+}
+
+.speaker-card:focus-visible {
+  border-color: var(--color-brand-green-200);
+  outline: 1px dashed var(--color-brand-green-200);
+  outline-offset: 4px;
 }
 
 .speaker-card__image-wrap {

@@ -1,7 +1,10 @@
 <template>
   <article
     class="highlight-card"
-    :class="{ 'highlight-card--expanded': isExpanded }"
+    :class="{
+      'highlight-card--expanded': isExpanded,
+      'highlight-card--compact': compact,
+    }"
     :style="cardStyle"
   >
     <div class="highlight-card__track">
@@ -27,6 +30,7 @@
       </div>
 
       <button
+        v-if="!compact"
         class="highlight-card__toggle text-preset-7"
         type="button"
         :aria-expanded="isExpanded"
@@ -36,7 +40,7 @@
         {{ isExpanded ? "Hide details" : "Show details" }}
       </button>
 
-      <div v-if="isExpanded" class="highlight-card__details text-preset-6">
+      <div v-if="!compact && isExpanded" class="highlight-card__details text-preset-6">
         <slot>{{ details }}</slot>
       </div>
     </div>
@@ -96,11 +100,13 @@ const props = withDefaults(
     bgColor?: string;
     details?: string;
     initiallyOpen?: boolean;
+    compact?: boolean;
   }>(),
   {
     bgColor: "var(--color-brand-yellow-100)",
     details: "",
     initiallyOpen: false,
+    compact: false,
   },
 );
 
@@ -292,6 +298,48 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
   fill: currentColor;
 }
 
+.highlight-card--compact {
+  min-height: 132px;
+  grid-template-columns: 40px minmax(0, 1fr) 130px;
+}
+
+.highlight-card--compact .highlight-card__content {
+  align-content: center;
+  padding: 20px;
+}
+
+.highlight-card--compact .highlight-card__meta {
+  grid-template-rows: auto auto auto;
+  align-content: center;
+  gap: 10px;
+  padding: 12px;
+}
+
+.highlight-card--compact .highlight-card__time,
+.highlight-card--compact .highlight-card__barcode,
+.highlight-card--compact .highlight-card__bookmark {
+  grid-row: auto;
+}
+
+.highlight-card--compact .highlight-card__barcode {
+  width: 100px;
+  height: 34px;
+  margin: 0;
+}
+
+.highlight-card--compact .highlight-card__day,
+.highlight-card--compact .highlight-card__meta-spacer,
+.highlight-card--compact .highlight-card__meta::before,
+.highlight-card--compact .highlight-card__meta::after {
+  display: none;
+}
+
+.highlight-card--compact .highlight-card__bookmark {
+  display: inline-grid;
+  width: 32px;
+  height: 32px;
+}
+
 @media (min-width: 761px) and (max-width: 1024px) {
   .highlight-card {
     grid-template-columns: 40px minmax(0, 1fr) 168px;
@@ -426,6 +474,25 @@ const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
   .highlight-card__meta::before,
   .highlight-card__meta::after {
     display: none;
+  }
+
+  .highlight-card--compact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .highlight-card--compact .highlight-card__content {
+    padding: 16px;
+  }
+
+  .highlight-card--compact .highlight-card__meta {
+    grid-template-columns: 84px minmax(0, 1fr) 38px;
+    min-height: 92px;
+    padding: 16px;
+  }
+
+  .highlight-card--compact .highlight-card__bookmark {
+    width: 38px;
+    height: 38px;
   }
 }
 </style>

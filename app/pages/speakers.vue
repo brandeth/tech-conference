@@ -24,14 +24,25 @@
           :name="speaker.name"
           :title-and-company="speaker.titleAndCompany"
           :talk-title="speaker.talkTitle"
+          @select="openSpeaker(speaker)"
         />
       </div>
     </section>
+
+    <SpeakerDialog v-model:open="isDialogOpen" :speaker="selectedSpeaker" />
   </main>
 </template>
 
 <script setup lang="ts">
-import { speakers } from '~/data/speakers'
+import { speakers, type Speaker } from '~/data/speakers'
+
+const selectedSpeaker = ref<Speaker | null>(null)
+const isDialogOpen = ref(false)
+
+const openSpeaker = (speaker: Speaker) => {
+  selectedSpeaker.value = speaker
+  isDialogOpen.value = true
+}
 </script>
 
 <style scoped>
