@@ -36,6 +36,10 @@
 <script setup lang="ts">
 import { speakers, type Speaker } from '~/data/speakers'
 
+useSeoMeta({
+  title: 'Speakers | DEVHORIZON',
+})
+
 const selectedSpeaker = ref<Speaker | null>(null)
 const isDialogOpen = ref(false)
 

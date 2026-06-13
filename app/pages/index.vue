@@ -12,6 +12,12 @@
   </main>
 </template>
 
+<script setup lang="ts">
+useSeoMeta({
+  title: 'DEVHORIZON 2026',
+})
+</script>
+
 <style scoped>
 .home-page {
   min-height: 100vh;

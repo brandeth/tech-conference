@@ -245,6 +245,10 @@ import priyaAvatar from '~/assets/images/avatar-priya-sharma.webp'
 import ryanAvatar from '~/assets/images/avatar-ryan-o-sullivan.webp'
 import tomAvatar from '~/assets/images/avatar-tom-kowalski.webp'
 
+useSeoMeta({
+  title: 'Design System | DEVHORIZON',
+})
+
 const speakerCardExamples = [
   {
     imageSrc: priyaAvatar,

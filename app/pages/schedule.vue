@@ -48,6 +48,10 @@
 </template>
 
 <script setup lang="ts">
+useSeoMeta({
+  title: 'Schedule | DEVHORIZON',
+})
+
 type ScheduleSession = {
   id: string
   day: string
