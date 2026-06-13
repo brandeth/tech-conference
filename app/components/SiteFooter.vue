@@ -58,7 +58,7 @@
 const navItems = [
   { label: 'Home', to: '/' },
   { label: 'Schedule', to: '/schedule' },
-  { label: 'Speakers', to: '/#speakers' },
+  { label: 'Speakers', to: '/speakers' },
 ] as const
 
 const tracks = [

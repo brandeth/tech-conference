@@ -16,88 +16,14 @@
       />
     </div>
 
-    <NuxtLink class="featured-speakers__cta" to="#">
+    <NuxtLink class="featured-speakers__cta" to="/speakers">
       View all speakers
     </NuxtLink>
   </section>
 </template>
 
 <script setup lang="ts">
-import elenaAvatar from '~/assets/images/avatar-elena-vasquez.webp'
-import jamesAvatar from '~/assets/images/avatar-james-okonkwo.webp'
-import lucasAvatar from '~/assets/images/avatar-lucas-moreau.webp'
-import naomiAvatar from '~/assets/images/avatar-naomi-tanaka.webp'
-import priyaAvatar from '~/assets/images/avatar-priya-sharma.webp'
-import ryanAvatar from '~/assets/images/avatar-ryan-o-sullivan.webp'
-import sarahAvatar from '~/assets/images/avatar-sarah-lindstrom.webp'
-import tomAvatar from '~/assets/images/avatar-tom-kowalski.webp'
-
-const featuredSpeakers = [
-  {
-    imageSrc: elenaAvatar,
-    imageAlt: 'Elena Vasquez',
-    imageBackgroundColor: 'var(--color-brand-cyan-100)',
-    name: 'elena vasquez',
-    titleAndCompany: 'Principal Frontend Engineer\n@ByteCraft',
-    talkTitle: 'The next frontier of web development',
-  },
-  {
-    imageSrc: naomiAvatar,
-    imageAlt: 'Naomi Tanaka',
-    imageBackgroundColor: 'var(--color-brand-blue-100)',
-    name: 'naomi tanaka',
-    titleAndCompany: 'Accessibility Engineering Lead\n@Axion',
-    talkTitle: 'Screen readers deserve better components',
-  },
-  {
-    imageSrc: jamesAvatar,
-    imageAlt: 'James Okonkwo',
-    imageBackgroundColor: 'var(--color-brand-purple-100)',
-    name: 'james okonkwo',
-    titleAndCompany: 'Engineering Director @Cartwell',
-    talkTitle: 'Monorepos at scale: lessons from 500 packages',
-  },
-  {
-    imageSrc: sarahAvatar,
-    imageAlt: 'Sarah Lindström',
-    imageBackgroundColor: 'var(--color-brand-yellow-100)',
-    name: 'sarah lindström',
-    titleAndCompany: 'Design Systems Lead @Tessera',
-    talkTitle: 'Type-safe design tokens across platforms',
-  },
-  {
-    imageSrc: priyaAvatar,
-    imageAlt: 'Priya Sharma',
-    imageBackgroundColor: 'var(--color-brand-cyan-100)',
-    name: 'priya sharma',
-    titleAndCompany: 'Senior Developer Advocate @Cobalt',
-    talkTitle: "ARIA patterns you're probably using wrong",
-  },
-  {
-    imageSrc: lucasAvatar,
-    imageAlt: 'Lucas Moreau',
-    imageBackgroundColor: 'var(--color-brand-purple-100)',
-    name: 'lucas moreau',
-    titleAndCompany: 'Senior Frontend Engineer @Websmith',
-    talkTitle: 'Browser DevTools: hidden gems for CSS debugging',
-  },
-  {
-    imageSrc: ryanAvatar,
-    imageAlt: "Ryan O'Sullivan",
-    imageBackgroundColor: 'var(--color-brand-red-100)',
-    name: "ryan o'sullivan",
-    titleAndCompany: 'DevTools Engineer @Cobalt',
-    talkTitle: 'Profiling React renders at 120fps',
-  },
-  {
-    imageSrc: tomAvatar,
-    imageAlt: 'Tom Kowalski',
-    imageBackgroundColor: 'var(--color-brand-purple-100)',
-    name: 'tom kowalski',
-    titleAndCompany: 'Platform Engineer @Nimbus',
-    talkTitle: 'Deploy preview environments that scale',
-  },
-] as const
+import { featuredSpeakers } from '~/data/speakers'
 </script>
 
 <style scoped>
