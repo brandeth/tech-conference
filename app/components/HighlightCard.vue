@@ -36,20 +36,9 @@
         {{ isExpanded ? "Hide details" : "Show details" }}
       </button>
 
-      <Transition
-        name="highlight-card-details"
-        :duration="transitionDuration"
-        @before-enter="onDetailsBeforeEnter"
-        @enter="onDetailsEnter"
-        @after-enter="onDetailsAfterEnter"
-        @before-leave="onDetailsBeforeLeave"
-        @leave="onDetailsLeave"
-        @after-leave="onDetailsAfterLeave"
-      >
-        <div v-if="isExpanded" class="highlight-card__details text-preset-6">
-          <slot>{{ details }}</slot>
-        </div>
-      </Transition>
+      <div v-if="isExpanded" class="highlight-card__details text-preset-6">
+        <slot>{{ details }}</slot>
+      </div>
     </div>
 
     <aside class="highlight-card__meta" aria-label="Session timing">
@@ -107,13 +96,11 @@ const props = withDefaults(
     bgColor?: string;
     details?: string;
     initiallyOpen?: boolean;
-    transitionDuration?: number;
   }>(),
   {
     bgColor: "var(--color-brand-yellow-100)",
     details: "",
     initiallyOpen: false,
-    transitionDuration: 260,
   },
 );
 
@@ -123,7 +110,6 @@ const isBookmarked = ref(false);
 const cardStyle = computed(() => ({
   "--highlight-card-bg": props.bgColor,
   "--highlight-card-accent": props.bgColor,
-  "--highlight-card-transition-duration": `${props.transitionDuration}ms`,
 }));
 
 const speakerLabel = computed(
@@ -131,55 +117,6 @@ const speakerLabel = computed(
 );
 const bookmarkLabel = computed(() => `Bookmark ${props.title} (${props.day})`);
 
-const transitionDuration = computed(() => props.transitionDuration);
-
-function setDetailsHeight(element: Element, height: string) {
-  const detailsElement = element as HTMLElement;
-
-  detailsElement.style.height = height;
-}
-
-function prepareDetailsTransition(element: Element) {
-  const detailsElement = element as HTMLElement;
-
-  detailsElement.style.overflow = "hidden";
-}
-
-function cleanupDetailsTransition(element: Element) {
-  const detailsElement = element as HTMLElement;
-
-  detailsElement.style.height = "";
-  detailsElement.style.overflow = "";
-}
-
-function onDetailsBeforeEnter(element: Element) {
-  prepareDetailsTransition(element);
-  setDetailsHeight(element, "0");
-}
-
-function onDetailsEnter(element: Element) {
-  setDetailsHeight(element, `${(element as HTMLElement).scrollHeight}px`);
-}
-
-function onDetailsAfterEnter(element: Element) {
-  cleanupDetailsTransition(element);
-}
-
-function onDetailsBeforeLeave(element: Element) {
-  const detailsElement = element as HTMLElement;
-
-  prepareDetailsTransition(detailsElement);
-  setDetailsHeight(detailsElement, `${detailsElement.scrollHeight}px`);
-  void detailsElement.offsetHeight;
-}
-
-function onDetailsLeave(element: Element) {
-  setDetailsHeight(element, "0");
-}
-
-function onDetailsAfterLeave(element: Element) {
-  cleanupDetailsTransition(element);
-}
 </script>
 
 <style scoped>
@@ -262,28 +199,6 @@ function onDetailsAfterLeave(element: Element) {
   white-space: pre-line;
 }
 
-.highlight-card-details-enter-active,
-.highlight-card-details-leave-active {
-  transition:
-    height var(--highlight-card-transition-duration) ease,
-    opacity var(--highlight-card-transition-duration) ease,
-    transform var(--highlight-card-transition-duration) ease;
-  will-change: height, opacity, transform;
-}
-
-.highlight-card-details-enter-from,
-.highlight-card-details-leave-to {
-  opacity: 0;
-  transform: translateY(-6px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .highlight-card-details-enter-active,
-  .highlight-card-details-leave-active {
-    transition-duration: 1ms;
-  }
-}
-
 .highlight-card__meta {
   display: grid;
   grid-template-rows:
@@ -296,7 +211,6 @@ function onDetailsAfterLeave(element: Element) {
   border-left: 2px dashed var(--color-brand-neutral-900);
   padding: 16px;
   text-align: center;
-  transition: grid-template-rows var(--highlight-card-transition-duration) ease;
 }
 
 .highlight-card--expanded .highlight-card__meta {
