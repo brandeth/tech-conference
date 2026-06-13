@@ -106,17 +106,17 @@ function getAriaCurrent(item: (typeof navItems)[number]) {
   position: sticky;
   top: 0;
   z-index: 20;
-  border-bottom: 1px solid var(--color-brand-neutral-600);
   background: transparent;
 }
 
 .site-nav__inner {
   display: flex;
-  min-height: 120px;
+  min-height: 80px;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  padding: 30px 0;
+  padding: 19px 0;
+  border-bottom: 1px solid var(--color-brand-neutral-600);
 }
 
 .site-nav__brand {
@@ -309,15 +309,10 @@ function getAriaCurrent(item: (typeof navItems)[number]) {
 }
 
 @media (max-width: 767px) {
-  .site-nav {
-    border-bottom: 0;
-  }
-
   .site-nav__inner {
     height: 64px;
     min-height: 64px;
     padding: 0;
-    border-bottom: 1px solid var(--color-brand-neutral-600);
   }
 
   .site-nav__logo {

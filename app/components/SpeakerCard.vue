@@ -60,10 +60,14 @@ const imageWrapStyle = computed(() => ({
   cursor: pointer;
   padding: 0;
   text-align: left;
+  transition:
+    border-color 150ms ease-out,
+    box-shadow 150ms ease-out;
 }
 
 .speaker-card:hover {
-  border-color: var(--color-brand-neutral-500);
+  border-color: var(--color-brand-neutral-100);
+  box-shadow: 4px 4px 0 var(--color-brand-neutral-100);
 }
 
 .speaker-card:focus-visible {
