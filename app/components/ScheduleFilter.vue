@@ -119,7 +119,7 @@ function clearFilters() {
   min-width: 100%;
   align-items: center;
   gap: 12px;
-  padding: 0 2px 2px 0;
+  padding: 2px 4px 4px 2px;
 }
 
 .schedule-filter__group {
