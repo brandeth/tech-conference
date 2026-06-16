@@ -10,6 +10,7 @@
         :name="track.name"
         :subheading="track.subheading"
         :color="track.color"
+        :to="track.to"
       />
     </div>
   </section>
@@ -21,21 +22,25 @@ const tracks = [
     name: 'frontend',
     subheading: 'Building modern interfaces for the web',
     color: 'yellow',
+    to: { path: '/schedule', query: { day: 'day-01', track: 'frontend' } },
   },
   {
     name: 'performance',
     subheading: 'Make every millisecond count',
     color: 'red',
+    to: { path: '/schedule', query: { day: 'day-01', track: 'performance' } },
   },
   {
     name: 'accessibility',
     subheading: 'Building inclusive experiences for everyone',
     color: 'blue',
+    to: { path: '/schedule', query: { day: 'day-02', track: 'a11y' } },
   },
   {
     name: 'tooling',
     subheading: 'Level up your developer workflow',
     color: 'purple',
+    to: { path: '/schedule', query: { day: 'day-03', track: 'tooling' } },
   },
 ] as const
 </script>

@@ -71,6 +71,8 @@ const selectedDay = ref('day-01')
 const selectedFilters = ref<string[]>([])
 const myScheduleOnly = ref(false)
 
+const route = useRoute()
+
 const sessions = [
   {
     id: 'next-frontier-web-development',
@@ -193,6 +195,22 @@ const sessions = [
     saved: true,
   },
 ] satisfies ScheduleSession[]
+
+const validDays = new Set(['day-01', 'day-02', 'day-03'])
+const validFilters = new Set(['frontend', 'performance', 'a11y', 'tooling'])
+
+watch(
+  () => route.query,
+  (query) => {
+    const day = typeof query.day === 'string' ? query.day : ''
+    const track = typeof query.track === 'string' ? query.track : ''
+
+    selectedDay.value = validDays.has(day) ? day : 'day-01'
+    selectedFilters.value = validFilters.has(track) ? [track] : []
+    myScheduleOnly.value = false
+  },
+  { immediate: true },
+)
 
 const filteredSessions = computed(() =>
   sessions.filter((session) => {
